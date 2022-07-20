@@ -5,6 +5,13 @@
       <div class="input-group mb-3 input-group-lg px-5">
         <span class="input-group-text" id="basic-addon1">city</span>
         <input type="text" class="form-control" placeholder="cityname" />
+        <button
+          type="button"
+          class="btn btn-info"
+          v-on:click="locatorButtonPressed"
+        >
+          位置
+        </button>
       </div>
     </div>
   </div>
@@ -18,19 +25,22 @@ export default {
       header: 'Weather Forecast'
     }
   },
-  methods: {
-    locatorButtonPressed() {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log(position.coords.latitude)
-          console.log(position.coords.longitude)
-        },
-        (error) => {
-          console.log(error.message)
-        }
-      )
-    }
-  }
+  created() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude
+        const longitude = position.coords.longitude
+        console.log(latitude)
+        console.log(longitude)
+        this.$store.commit('addloaction', this.inputValue)
+      },
+      (error) => {
+        console.log(error.message)
+      }
+    )
+  },
+
+  methods: {}
 }
 </script>
 
