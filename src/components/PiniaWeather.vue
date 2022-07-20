@@ -1,14 +1,11 @@
 <template>
   <div class="weather">
-    <h1>{{ header }}</h1>
-    <div class="row input-row">
-      <button
-        class="btn btn-primary"
-        type="submit"
-        @click="locatorButtonPressed"
-      >
-        Button
-      </button>
+    <div class="col-sm2">
+      <h1>{{ header }}</h1>
+      <div class="input-group mb-3 input-group-lg px-5">
+        <span class="input-group-text" id="basic-addon1">city</span>
+        <input type="text" class="form-control" placeholder="cityname" />
+      </div>
     </div>
   </div>
 </template>
@@ -40,8 +37,5 @@ export default {
 <style lang="scss">
 .weather {
   color: #f1f2b5;
-}
-.btn-primary {
-  width: min-content;
 }
 </style>
