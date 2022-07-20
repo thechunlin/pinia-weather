@@ -1,10 +1,15 @@
 <template>
-  <div class="weather">123</div>
+  <div class="weather">{{ header }}</div>
 </template>
 
 <script>
 export default {
-  name: 'PiniaWeather'
+  name: 'PiniaWeather',
+  data() {
+    return {
+      header: 'Weather Forecast'
+    }
+  }
 }
 </script>
 
