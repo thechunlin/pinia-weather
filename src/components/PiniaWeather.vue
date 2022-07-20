@@ -5,13 +5,6 @@
       <div class="input-group mb-3 input-group-lg px-5">
         <span class="input-group-text" id="basic-addon1">city</span>
         <input type="text" class="form-control" placeholder="cityname" />
-        <button
-          type="button"
-          class="btn btn-info"
-          v-on:click="locatorButtonPressed"
-        >
-          位置
-        </button>
       </div>
     </div>
   </div>
