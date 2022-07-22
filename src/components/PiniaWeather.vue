@@ -15,17 +15,20 @@ export default {
   name: 'PiniaWeather',
   data() {
     return {
-      header: 'Weather Forecast'
+      header: 'Weather Forecast',
+      location: {
+        lat: '',
+        lon: ''
+      }
     }
   },
   created() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const latitude = position.coords.latitude
-        const longitude = position.coords.longitude
-        console.log(latitude)
-        console.log(longitude)
-        this.$store.commit('addloaction', this.inputValue)
+        this.location.lat = position.coords.latitude
+        this.location.lon = position.coords.longitude
+        console.log(this.location.lat)
+        console.log(this.location.lon)
       },
       (error) => {
         console.log(error.message)
@@ -33,7 +36,13 @@ export default {
     )
   },
 
-  methods: {}
+  mounted() {
+    fetch(
+      'https://api.weatherapi.com/v1/history.json?key=424993aae23147a1afb32605222207&q= 48.8567,2.3508&dt=2022-07-22'
+    ).then((res) => {
+      console.log(res.json())
+    })
+  }
 }
 </script>
 
