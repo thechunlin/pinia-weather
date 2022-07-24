@@ -4,10 +4,20 @@
       <h1>{{ header }}</h1>
       <div class="input-group mb-3 input-group-lg px-5">
         <span class="input-group-text" id="basic-addon1">city</span>
-        <input type="text" class="form-control" placeholder="cityname" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="cityname"
+          v-model="location.search"
+          v-on:keypress="searchCoordinates"
+        />
       </div>
-      <p>{{ location.name }}</p>
       <p>{{ location.country }}</p>
+      <p>{{ location.name }}</p>
+      <p>{{ location.maxwind_kph }}</p>
+      <p>{{ location.search }}</p>
+      <p>{{ location.searchlat }}</p>
+      <p>{{ location.searchlon }}</p>
     </div>
   </div>
 </template>
@@ -20,11 +30,18 @@ export default {
       header: 'Weather Forecast',
       url_base:
         'https://api.weatherapi.com/v1/history.json?key=424993aae23147a1afb32605222207&',
+      search_url_base:
+        'https://api.weatherapi.com/v1/current.json?key=424993aae23147a1afb32605222207&q=',
+
       location: {
         lat: '',
         lon: '',
+        searchlat: '',
+        searchlon: '',
         name: '',
-        country: ''
+        country: '',
+        search: '',
+        maxwind_kph: ''
       },
       today: ''
     }
@@ -44,6 +61,8 @@ export default {
       .then((data) => {
         this.location.name = data.location.name
         this.location.country = data.location.country
+        this.location.maxwind_kph = data.forecast.forecastday[0].day.maxwind_kph
+        console.table(data.forecast.forecastday)
       })
   },
   methods: {
@@ -51,6 +70,17 @@ export default {
       return new Promise(function (resolve, reject) {
         navigator.geolocation.getCurrentPosition(resolve, reject)
       })
+    },
+    searchCoordinates() {
+      // fetch(`${this.search_url_base}`)
+      fetch(`${this.search_url_base},${this.location.search}&aqi=yes`)
+        .then((res) => res.json())
+        .then((data) => {
+          this.location.searchlat = data.location.lat
+          this.location.searchlon = data.location.lon
+          console.table(data)
+          console.log(1)
+        })
     }
   }
 }
