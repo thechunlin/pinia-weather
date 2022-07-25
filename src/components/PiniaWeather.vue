@@ -61,7 +61,6 @@
           <div class="p-3 border bg-light">Row column</div>
         </div>
       </div>
-
       <p>{{ Columns.country }}</p>
       <p>{{ Columns.name }}</p>
       <p>{{ Columns.search }}</p>
@@ -78,8 +77,6 @@ export default {
     return {
       header: 'Weather Forecast',
       url_base:
-        'https://api.weatherapi.com/v1/history.json?key=424993aae23147a1afb32605222207&',
-      search_url_base:
         'https://api.weatherapi.com/v1/current.json?key=424993aae23147a1afb32605222207&q=',
       keyword: '',
       apiData: '',
@@ -109,9 +106,7 @@ export default {
     this.Columns.lat = position.coords.latitude
     this.Columns.lon = position.coords.longitude
 
-    fetch(
-      `${this.url_base}q=${this.Columns.lat},${this.Columns.lon}&dt=${this.today}`
-    )
+    fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
       .then((res) => res.json())
       .then((data) => {
         this.apiData = data
@@ -134,7 +129,7 @@ export default {
     },
     searchCoordinates() {
       // fetch(`${this.search_url_base}`)
-      fetch(`${this.search_url_base},${this.Columns.search}&aqi=yes`)
+      fetch(`${this.url_base},${this.Columns.search}&aqi=yes`)
         .then((res) => res.json())
         .then((data) => {
           this.Columns.searchlat = data.location.lat
