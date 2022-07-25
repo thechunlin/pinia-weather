@@ -4,6 +4,13 @@
       <div class="row">
         <div class="col-4">
           <h3>{{ apiData.location.localtime }}</h3>
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            v-on:click="locationCoordinates"
+          >
+            所在地資訊
+          </button>
         </div>
         <div class="col-4">
           <h1>{{ header }}</h1>
@@ -102,12 +109,18 @@ export default {
         navigator.geolocation.getCurrentPosition(resolve, reject)
       })
     },
+    locationCoordinates() {
+      fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
+        .then((res) => res.json())
+        .then((data) => {
+          this.apiData = data
+        })
+    },
     searchCoordinates() {
       fetch(`${this.url_base},${this.Columns.search}&aqi=yes`)
         .then((res) => res.json())
         .then((data) => {
           this.apiData = data
-          console.table(data)
         })
     }
   }
