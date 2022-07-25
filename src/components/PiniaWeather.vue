@@ -8,8 +8,12 @@
         <div class="col-4">
           <h1>{{ header }}</h1>
         </div>
+        <div class="col-4">
+          <div><h4>天氣狀況</h4></div>
+          <img :src="Columns.icon" class="img-thumbnail" />
+        </div>
       </div>
-      <div class="input-group mb-3 input-group-lg px-5">
+      <div class="input-group mb-3 input-group-lg px-5 py-3">
         <span class="input-group-text" id="basic-addon1">city</span>
         <input
           type="text"
@@ -19,15 +23,19 @@
           v-on:keypress="searchCoordinates"
         />
       </div>
-      <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+      <div class="row row-cols-2 row-cols-lg-4 g-2 g-l g-4">
         <div class="col">
-          <div class="p-3 border bg-light">
-            <div>天氣狀況</div>
-            <img :src="Columns.icon" class="img-thumbnail" />
-          </div>
+          <div class="p-3 border bg-light">國家 {{ Columns.country }}</div>
         </div>
         <div class="col">
-          <div class="p-3 border bg-light">濕度 {{ Columns.avghumidity }}</div>
+          <div class="p-3 border bg-light">地區 {{ Columns.name }}</div>
+        </div>
+        <div class="col">
+          <div class="p-1 border bg-light">
+            平均溫度 {{ Columns.avgtempC }} °C
+            <br />
+            平均溫度 {{ Columns.avgtempF }} °F
+          </div>
         </div>
         <div class="col">
           <div class="p-3 border bg-light">
@@ -35,10 +43,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="p-3 border bg-light">Row column</div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">Row column</div>
+          <div class="p-3 border bg-light">濕度 {{ Columns.avghumidity }}</div>
         </div>
         <div class="col">
           <div class="p-3 border bg-light">Row column</div>
@@ -89,6 +94,8 @@ export default {
         search: '',
         maxwind_kph: '',
         avghumidity: '',
+        avgtempC: '',
+        avgtempF: '',
         icon: ''
       },
       today: ''
@@ -113,8 +120,10 @@ export default {
         this.Columns.country = data.location.country
         this.Columns.maxwind_kph = data.forecast.forecastday[0].day.maxwind_kph
         this.Columns.avghumidity = data.forecast.forecastday[0].day.avghumidity
+        this.Columns.avgtempC = data.forecast.forecastday[0].day.avgtemp_c
+        this.Columns.avgtempF = data.forecast.forecastday[0].day.avgtemp_f
         this.Columns.icon = data.forecast.forecastday[0].day.condition.icon
-        console.table(data.forecast.forecastday)
+        console.log(data)
       })
   },
   methods: {
