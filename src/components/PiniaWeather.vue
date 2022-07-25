@@ -52,21 +52,12 @@
           </div>
         </div>
         <div class="col">
-          <div class="p-3 border bg-light">
-            PM 2.5 {{ apiData.current.air_quality.pm2_5 }}
+          <div class="p-3 border bg-light value.slice(0,value.index0f('.'+4))">
+            懸浮微粒 {{ apiData.current.air_quality.pm2_5.toFixed(2) }}
           </div>
         </div>
         <div class="col">
-          <div class="p-3 border bg-light">Row column</div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">Row column</div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">Row column</div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">Row column</div>
+          <div class="p-3 border bg-light">紫外線 {{ apiData.current.uv }}</div>
         </div>
       </div>
     </div>
