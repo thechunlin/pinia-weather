@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <div class="weather">
+    <div class="weather" v-if="apiData != ''">
       <div class="row">
         <div class="col-4">
-          <h3>{{ Columns.time }}</h3>
+          <h3>{{ apiData.location.localtime }}</h3>
         </div>
         <div class="col-4">
           <h1>{{ header }}</h1>
         </div>
         <div class="col-4">
           <div><h4>天氣狀況</h4></div>
-          <img :src="Columns.icon" class="img-thumbnail" />
+          <img :src="apiData.current.condition.icon" class="img-thumbnail" />
         </div>
       </div>
       <div class="input-group mb-3 input-group-lg px-5 py-3">
@@ -25,28 +25,36 @@
       </div>
       <div class="row row-cols-2 row-cols-lg-4 g-2 g-l g-4">
         <div class="col">
-          <div class="p-3 border bg-light">國家 {{ Columns.country }}</div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">地區 {{ Columns.name }}</div>
-        </div>
-        <div class="col">
-          <div class="p-1 border bg-light">
-            平均溫度 {{ Columns.avgtempC }} °C
-            <br />
-            平均溫度 {{ Columns.avgtempF }} °F
+          <div class="p-3 border bg-light">
+            國家 {{ apiData.location.country }}
           </div>
         </div>
         <div class="col">
           <div class="p-3 border bg-light">
-            最大風速 {{ Columns.maxwind_kph }} km/h
+            地區 {{ apiData.location.name }}
           </div>
         </div>
         <div class="col">
-          <div class="p-3 border bg-light">濕度 {{ Columns.avghumidity }}</div>
+          <div class="p-1 border bg-light">
+            平均溫度 {{ apiData.current.temp_c }} °C
+            <br />
+            平均溫度 {{ apiData.current.temp_f }} °F
+          </div>
         </div>
         <div class="col">
-          <div class="p-3 border bg-light">Row column</div>
+          <div class="p-3 border bg-light">
+            最大風速 {{ apiData.current.wind_kph }} km/h
+          </div>
+        </div>
+        <div class="col">
+          <div class="p-3 border bg-light">
+            濕度 {{ apiData.current.humidity }}
+          </div>
+        </div>
+        <div class="col">
+          <div class="p-3 border bg-light">
+            PM 2.5 {{ apiData.current.air_quality.pm2_5 }}
+          </div>
         </div>
         <div class="col">
           <div class="p-3 border bg-light">Row column</div>
@@ -61,11 +69,6 @@
           <div class="p-3 border bg-light">Row column</div>
         </div>
       </div>
-      <p>{{ Columns.country }}</p>
-      <p>{{ Columns.name }}</p>
-      <p>{{ Columns.search }}</p>
-      <p>{{ Columns.searchlat }}</p>
-      <p>{{ Columns.searchlon }}</p>
     </div>
   </div>
 </template>
@@ -83,17 +86,7 @@ export default {
       Columns: {
         lat: '',
         lon: '',
-        time: '',
-        searchlat: '',
-        searchlon: '',
-        name: '',
-        country: '',
-        search: '',
-        maxwind_kph: '',
-        avghumidity: '',
-        avgtempC: '',
-        avgtempF: '',
-        icon: ''
+        search: ''
       },
       today: ''
     }
@@ -110,15 +103,6 @@ export default {
       .then((res) => res.json())
       .then((data) => {
         this.apiData = data
-        this.Columns.name = data.location.name
-        this.Columns.time = data.location.localtime
-        this.Columns.country = data.location.country
-        this.Columns.maxwind_kph = data.forecast.forecastday[0].day.maxwind_kph
-        this.Columns.avghumidity = data.forecast.forecastday[0].day.avghumidity
-        this.Columns.avgtempC = data.forecast.forecastday[0].day.avgtemp_c
-        this.Columns.avgtempF = data.forecast.forecastday[0].day.avgtemp_f
-        this.Columns.icon = data.forecast.forecastday[0].day.condition.icon
-        console.log(data)
       })
   },
   methods: {
@@ -128,14 +112,11 @@ export default {
       })
     },
     searchCoordinates() {
-      // fetch(`${this.search_url_base}`)
       fetch(`${this.url_base},${this.Columns.search}&aqi=yes`)
         .then((res) => res.json())
         .then((data) => {
-          this.Columns.searchlat = data.location.lat
-          this.Columns.searchlon = data.location.lon
+          this.apiData = data
           console.table(data)
-          console.log(1)
         })
     }
   }
