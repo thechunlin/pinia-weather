@@ -21,9 +21,7 @@
         </div>
       </div>
       <div class="input-group mb-3 input-group-lg px-5 py-3">
-        <span class="input-group-text" id="basic-addon1"
-          ><img :src="require('@/assets/search.png')"
-        /></span>
+        <span class="input-group-text" id="basic-addon1"> </span>
         <input
           type="text"
           class="form-control"
@@ -35,7 +33,6 @@
       <div class="row row-cols-2 row-cols-lg-4 g-2 g-l g-4">
         <div class="col">
           <div class="p-3 border bg-light">
-            <img :src="require('@/assets/earth.png')" />
             國家 {{ apiData.location.country }}
           </div>
         </div>
@@ -46,16 +43,14 @@
           </div>
         </div>
         <div class="col">
-          <div class="p-3 border bg-light" style="display: flex">
-            <img :src="require('@/assets/temp.png')" />
+          <div class="p-3 border bg-light">
             平均溫度 {{ apiData.current.temp_c }} °C
             <br />
             平均溫度 {{ apiData.current.temp_f }} °F
           </div>
         </div>
         <div class="col">
-          <div class="p-3 border bg-light" style="display: flex">
-            <img :src="require('@/assets/person.png')" />
+          <div class="p-3 border bg-light">
             體感溫度 {{ apiData.current.feelslike_c }} °C
             <br />
             體感溫度 {{ apiData.current.feelslike_f }} °F
@@ -63,25 +58,22 @@
         </div>
         <div class="col">
           <div class="p-3 border bg-light">
-            <img :src="require('@/assets/wind.png')" />
             風速 {{ apiData.current.wind_kph }} km/h
           </div>
         </div>
         <div class="col">
           <div class="p-3 border bg-light">
-            <img :src="require('@/assets/Humidity.png')" />
             濕度 {{ apiData.current.humidity }}
           </div>
         </div>
         <div class="col">
           <div class="p-3 border bg-light value.slice(0,value.index0f('.'+4))">
-            <img :src="require('@/assets/PM.png')" />
             懸浮微粒 {{ apiData.current.air_quality.pm2_5.toFixed(2) }}
           </div>
         </div>
         <div class="col">
           <div class="p-3 border bg-light">
-            <img :src="require('@/assets/UV.png')" />紫外線
+            紫外線
             {{ apiData.current.uv }}
           </div>
         </div>
