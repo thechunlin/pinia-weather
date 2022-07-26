@@ -21,7 +21,9 @@
         </div>
       </div>
       <div class="input-group mb-3 input-group-lg px-5 py-3">
-        <span class="input-group-text" id="basic-addon1">city</span>
+        <span class="input-group-text" id="basic-addon1"
+          ><img :src="require('@/assets/search.png')"
+        /></span>
         <input
           type="text"
           class="form-control"
@@ -39,7 +41,7 @@
         </div>
         <div class="col">
           <div class="p-3 border bg-light">
-            <img :src="require('@/assets/location.png')" />
+            <sun-wireless-icon fillColor="#FFa1e0" />
             地區 {{ apiData.location.name }}
           </div>
         </div>
@@ -89,7 +91,11 @@
 </template>
 
 <script>
+import SunWirelessIcon from 'vue-material-design-icons/SunWireless.vue'
 export default {
+  components: {
+    SunWirelessIcon
+  },
   name: 'PiniaWeather',
   data() {
     return {
