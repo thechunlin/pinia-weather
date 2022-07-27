@@ -51,10 +51,18 @@
                   </p>
                 </div>
                 <div class="col-6 align-self-center">
-                  <h1>{{ apiData.current.temp_c }} °C</h1>
+                  <p>{{ change.aa }}</p>
+                  <h1>{{ change.nowTemp }} {{ change.unit }}</h1>
                   <p class="m-0">
-                    Feellike : {{ apiData.current.feelslike_c }}°C
+                    Feellike : {{ change.feelTemp }}{{ change.unit }}
                   </p>
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    v-on:click="changeTemp"
+                  >
+                    <map-marker-radius-outline-icon fillColor="#FFa1e0" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -101,7 +109,9 @@
             <div class="col-4">
               <div class="row column">
                 <p class="m-0">Today AM6:00</p>
+                <div><sun-wireless-outline-icon fillColor="#FFa1e0" /></div>
                 <p class="m-0">紫外線</p>
+                <div><face-mask-outline-icon fillColor="#FFa1e0" /></div>
                 <p class="m-0">PM2.5</p>
                 <p class="m-0">溫度</p>
               </div>
@@ -109,7 +119,9 @@
             <div class="col-4">
               <div class="row column">
                 <p class="m-0">Today AM6:00</p>
+                <div><sun-wireless-outline-icon fillColor="#FFa1e0" /></div>
                 <p class="m-0">紫外線</p>
+                <div><face-mask-outline-icon fillColor="#FFa1e0" /></div>
                 <p class="m-0">PM2.5</p>
                 <p class="m-0">溫度</p>
               </div>
@@ -117,7 +129,9 @@
             <div class="col-4">
               <div class="row column">
                 <p class="m-0">Today AM6:00</p>
+                <div><sun-wireless-outline-icon fillColor="#FFa1e0" /></div>
                 <p class="m-0">紫外線</p>
+                <div><face-mask-outline-icon fillColor="#FFa1e0" /></div>
                 <p class="m-0">PM2.5</p>
                 <p class="m-0">溫度</p>
               </div>
@@ -157,6 +171,13 @@ export default {
         'https://api.weatherapi.com/v1/current.json?key=424993aae23147a1afb32605222207&q=',
       keyword: '',
       apiData: '',
+      change: {
+        nowTemp: '',
+        feelTemp: '',
+        C: '°C',
+        F: '°F',
+        unit: '°C'
+      },
       Columns: {
         lat: '',
         lon: '',
@@ -176,6 +197,8 @@ export default {
     fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
       .then((res) => res.json())
       .then((data) => {
+        this.change.nowTemp = data.current.temp_c
+        this.change.feelTemp = data.current.feelslike_c
         this.apiData = data
       })
   },
@@ -189,6 +212,8 @@ export default {
       fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
         .then((res) => res.json())
         .then((data) => {
+          this.change.nowTemp = data.current.temp_c
+          this.change.feelTemp = data.current.feelslike_c
           this.apiData = data
         })
     },
@@ -196,8 +221,25 @@ export default {
       fetch(`${this.url_base},${this.Columns.search}&aqi=yes`)
         .then((res) => res.json())
         .then((data) => {
+          this.change.nowTemp = data.current.temp_c
+          this.change.feelTemp = data.current.feelslike_c
           this.apiData = data
         })
+    },
+    changeTemp() {
+      if (this.change.nowTemp === this.apiData.current.temp_c) {
+        return (
+          (this.change.nowTemp = this.apiData.current.temp_f),
+          (this.change.unit = this.change.F),
+          (this.change.feelTemp = this.apiData.current.feelslike_f)
+        )
+      } else {
+        return (
+          (this.change.nowTemp = this.apiData.current.temp_c),
+          (this.change.unit = this.change.C),
+          (this.change.feelTemp = this.apiData.current.feelslike_c)
+        )
+      }
     }
   }
 }
