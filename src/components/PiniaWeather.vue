@@ -9,32 +9,38 @@
           <h5>{{ apiData.location.country }} {{ apiData.location.name }}</h5>
         </div>
       </div>
-      <div class="input-group mb-2 input-group-lg-3 px-5 py-3 maxlength-5">
-        <span class="input-group-text" id="basic-addon1">
-          {{ apiData.location.localtime }}( {{ apiData.location.tz_id }} )</span
-        >
-        <input
-          type="text"
-          class="form-control"
-          placeholder="cityname"
-          v-model="Columns.search"
-        />
-        <button
-          type="button"
-          class="btn btn-outline-primary"
-          v-on:click="searchCoordinates"
-        >
-          <magnify-icon fillColor="#FFa1e0" />
-        </button>
-        <button
-          type="button"
-          class="btn btn-outline-primary"
-          v-on:click="locationCoordinates"
-        >
-          <map-marker-radius-outline-icon fillColor="#FFa1e0" />
-        </button>
+      <div class="row py-3">
+        <div class="col-10">
+          <div class="input-group mb-2 input-group-lg-3 maxlength-5">
+            <span class="input-group-text" id="basic-addon1">
+              {{ apiData.location.localtime }}(
+              {{ apiData.location.tz_id }} )</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="cityname"
+              v-model="Columns.search"
+            />
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              v-on:click="searchCoordinates"
+            >
+              <magnify-icon fillColor="#FFa1e0" />
+            </button>
+          </div>
+        </div>
+        <div class="col-2">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            v-on:click="locationCoordinates"
+          >
+            <map-marker-radius-outline-icon fillColor="#FFa1e0" />
+          </button>
+        </div>
       </div>
-
       <!-- row-cols-lg-4 g-5 -->
       <div class="row">
         <div class="col-6">
@@ -118,7 +124,7 @@
             </div>
             <div class="col-4">
               <div class="row column">
-                <p class="m-0">Today AM6:00</p>
+                <p class="m-0">Today PM6:00</p>
                 <div><sun-wireless-outline-icon fillColor="#FFa1e0" /></div>
                 <p class="m-0">紫外線</p>
                 <div><face-mask-outline-icon fillColor="#FFa1e0" /></div>
@@ -128,7 +134,7 @@
             </div>
             <div class="col-4">
               <div class="row column">
-                <p class="m-0">Today AM6:00</p>
+                <p class="m-0">Tomorrow</p>
                 <div><sun-wireless-outline-icon fillColor="#FFa1e0" /></div>
                 <p class="m-0">紫外線</p>
                 <div><face-mask-outline-icon fillColor="#FFa1e0" /></div>
@@ -167,6 +173,8 @@ export default {
   data() {
     return {
       header: 'Weather Forecast',
+      history_url_base:
+        'https://api.weatherapi.com/v1/history.json?key=424993aae23147a1afb32605222207&q=',
       url_base:
         'https://api.weatherapi.com/v1/current.json?key=424993aae23147a1afb32605222207&q=',
       keyword: '',
@@ -174,8 +182,6 @@ export default {
       change: {
         nowTemp: '',
         feelTemp: '',
-        C: '°C',
-        F: '°F',
         unit: '°C'
       },
       Columns: {
@@ -193,6 +199,14 @@ export default {
     const position = await this.getCoordinates()
     this.Columns.lat = position.coords.latitude
     this.Columns.lon = position.coords.longitude
+
+    fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.change.nowTemp = data.current.temp_c
+        this.change.feelTemp = data.current.feelslike_c
+        this.apiData = data
+      })
 
     fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
       .then((res) => res.json())
@@ -230,13 +244,13 @@ export default {
       if (this.change.nowTemp === this.apiData.current.temp_c) {
         return (
           (this.change.nowTemp = this.apiData.current.temp_f),
-          (this.change.unit = this.change.F),
+          (this.change.unit = '°F'),
           (this.change.feelTemp = this.apiData.current.feelslike_f)
         )
       } else {
         return (
           (this.change.nowTemp = this.apiData.current.temp_c),
-          (this.change.unit = this.change.C),
+          (this.change.unit = '°C'),
           (this.change.feelTemp = this.apiData.current.feelslike_c)
         )
       }
