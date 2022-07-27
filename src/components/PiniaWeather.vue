@@ -18,33 +18,80 @@
           class="form-control"
           placeholder="cityname"
           v-model="Columns.search"
-          v-on:keypress="searchCoordinates"
-        /><button
+        />
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          v-on:click="searchCoordinates"
+        >
+          <magnify-icon fillColor="#FFa1e0" />
+        </button>
+        <button
           type="button"
           class="btn btn-outline-primary"
           v-on:click="locationCoordinates"
         >
-          <sun-wireless-icon fillColor="#FFa1e0" />
+          <map-marker-radius-outline-icon fillColor="#FFa1e0" />
         </button>
       </div>
+
       <!-- row-cols-lg-4 g-5 -->
       <div class="row">
         <div class="col-6">
           <div class="row">
             <div class="col-12">
               <div class="row column">
-                <div class="col-6">天氣圖</div>
-                <div class="col-6">當下氣溫</div>
+                <div class="col-6 align-self-center">
+                  <img
+                    :src="apiData.current.condition.icon"
+                    class="img-thumbnail"
+                  />
+                  <p class="m-0">
+                    {{ apiData.current.condition.text }}
+                  </p>
+                </div>
+                <div class="col-6 align-self-center">
+                  <h1>{{ apiData.current.temp_c }} °C</h1>
+                  <p class="m-0">
+                    Feellike : {{ apiData.current.feelslike_c }}°C
+                  </p>
+                </div>
               </div>
             </div>
             <div class="col-12">
               <div class="row column">
-                <div class="col-4">風速</div>
-                <div class="col-4">紫外線</div>
-                <div class="col-4">PM2.5</div>
-                <div class="col-4">濕度</div>
-                <div class="col-4">氣壓</div>
-                <div class="col-4">風向</div>
+                <div class="col-4 align-self-center">
+                  <div><wind-power-outline-icon fillColor="#FFa1e0" /></div>
+                  <p class="m-0">{{ apiData.current.wind_kph }} km/h</p>
+                  <div>Wind</div>
+                </div>
+                <div class="col-4 align-self-center">
+                  <div><sun-wireless-outline-icon fillColor="#FFa1e0" /></div>
+                  <p class="m-0">{{ apiData.current.uv }}</p>
+                  <div><p class="m-0">UV</p></div>
+                </div>
+                <div class="col-4 align-self-center">
+                  <div><face-mask-outline-icon fillColor="#FFa1e0" /></div>
+                  <p class="m-0">
+                    {{ apiData.current.air_quality.pm2_5.toFixed(1) }}
+                  </p>
+                  <p class="m-0">PM2.5</p>
+                </div>
+                <div class="col-4 align-self-center">
+                  <div><water-percent-icon fillColor="#FFa1e0" /></div>
+                  <p class="m-0">{{ apiData.current.humidity }}</p>
+                  <div><p class="m-0">Humidity</p></div>
+                </div>
+                <div class="col-4 align-self-center">
+                  <div><speedometer-icon fillColor="#FFa1e0" /></div>
+                  <p class="m-0">{{ apiData.current.pressure_mb }} mb</p>
+                  <div>Pressure</div>
+                </div>
+                <div class="col-4 align-self-center">
+                  <div><weather-windy-icon fillColor="#FFa1e0" /></div>
+                  <p class="m-0">{{ apiData.current.wind_dir }}</p>
+                  <div><p class="m-0">Wind Direction</p></div>
+                </div>
               </div>
             </div>
           </div>
@@ -53,26 +100,26 @@
           <div class="row">
             <div class="col-4">
               <div class="row column">
-                <div class="col-12">Today AM6:00</div>
-                <div class="col-12">紫外線</div>
-                <div class="col-12">PM2.5</div>
-                <div class="col-12">溫度</div>
+                <p class="m-0">Today AM6:00</p>
+                <p class="m-0">紫外線</p>
+                <p class="m-0">PM2.5</p>
+                <p class="m-0">溫度</p>
               </div>
             </div>
             <div class="col-4">
               <div class="row column">
-                <div class="col-12">Today AM6:00</div>
-                <div class="col-12">紫外線</div>
-                <div class="col-12">PM2.5</div>
-                <div class="col-12">溫度</div>
+                <p class="m-0">Today AM6:00</p>
+                <p class="m-0">紫外線</p>
+                <p class="m-0">PM2.5</p>
+                <p class="m-0">溫度</p>
               </div>
             </div>
             <div class="col-4">
               <div class="row column">
-                <div class="col-12">Today AM6:00</div>
-                <div class="col-12">紫外線</div>
-                <div class="col-12">PM2.5</div>
-                <div class="col-12">溫度</div>
+                <p class="m-0">Today AM6:00</p>
+                <p class="m-0">紫外線</p>
+                <p class="m-0">PM2.5</p>
+                <p class="m-0">溫度</p>
               </div>
             </div>
           </div>
@@ -83,10 +130,24 @@
 </template>
 
 <script>
-import SunWirelessIcon from 'vue-material-design-icons/SunWireless.vue'
+import SunWirelessOutlineIcon from 'vue-material-design-icons/SunWirelessOutline.vue'
+import WeatherWindyIcon from 'vue-material-design-icons/WeatherWindy.vue'
+import FaceMaskOutlineIcon from 'vue-material-design-icons/FaceMaskOutline.vue'
+import WaterPercentIcon from 'vue-material-design-icons/WaterPercent.vue'
+import SpeedometerIcon from 'vue-material-design-icons/Speedometer.vue'
+import WindPowerOutlineIcon from 'vue-material-design-icons/WindPowerOutline.vue'
+import MagnifyIcon from 'vue-material-design-icons/Magnify.vue'
+import MapMarkerRadiusOutlineIcon from 'vue-material-design-icons/MapMarkerRadiusOutline.vue'
 export default {
   components: {
-    SunWirelessIcon
+    WeatherWindyIcon,
+    SunWirelessOutlineIcon,
+    FaceMaskOutlineIcon,
+    WaterPercentIcon,
+    SpeedometerIcon,
+    WindPowerOutlineIcon,
+    MagnifyIcon,
+    MapMarkerRadiusOutlineIcon
   },
   name: 'PiniaWeather',
   data() {
@@ -155,6 +216,7 @@ export default {
       var(--bs-bg-opacity)
     ) !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+    border-radius: var(--bs-border-radius) !important;
   }
 }
 </style>
