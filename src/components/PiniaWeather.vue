@@ -3,78 +3,78 @@
     <div class="weather" v-if="apiData != ''">
       <div class="row">
         <div class="col-4">
-          <h3>{{ apiData.location.localtime }}</h3>
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            v-on:click="locationCoordinates"
-          >
-            所在地資訊
-          </button>
+          <h4>{{ header }}</h4>
         </div>
         <div class="col-4">
-          <h1>{{ header }}</h1>
-        </div>
-        <div class="col-4">
-          <div><h4>天氣狀況</h4></div>
-          <img :src="apiData.current.condition.icon" class="img-thumbnail" />
+          <h5>{{ apiData.location.country }} {{ apiData.location.name }}</h5>
         </div>
       </div>
-      <div class="input-group mb-3 input-group-lg px-5 py-3">
-        <span class="input-group-text" id="basic-addon1"> </span>
+      <div class="input-group mb-2 input-group-lg-3 px-5 py-3 maxlength-5">
+        <span class="input-group-text" id="basic-addon1">
+          {{ apiData.location.localtime }}( {{ apiData.location.tz_id }} )</span
+        >
         <input
           type="text"
           class="form-control"
           placeholder="cityname"
           v-model="Columns.search"
           v-on:keypress="searchCoordinates"
-        />
+        /><button
+          type="button"
+          class="btn btn-outline-primary"
+          v-on:click="locationCoordinates"
+        >
+          <sun-wireless-icon fillColor="#FFa1e0" />
+        </button>
       </div>
-      <div class="row row-cols-2 row-cols-lg-4 g-2 g-l g-4">
-        <div class="col">
-          <div class="p-3 border bg-light">
-            國家 {{ apiData.location.country }}
+      <!-- row-cols-lg-4 g-5 -->
+      <div class="row">
+        <div class="col-6">
+          <div class="row">
+            <div class="col-12">
+              <div class="row column">
+                <div class="col-6">天氣圖</div>
+                <div class="col-6">當下氣溫</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row column">
+                <div class="col-4">風速</div>
+                <div class="col-4">紫外線</div>
+                <div class="col-4">PM2.5</div>
+                <div class="col-4">濕度</div>
+                <div class="col-4">氣壓</div>
+                <div class="col-4">風向</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col">
-          <div class="p-3 border bg-light">
-            <sun-wireless-icon fillColor="#FFa1e0" />
-            地區 {{ apiData.location.name }}
-          </div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">
-            平均溫度 {{ apiData.current.temp_c }} °C
-            <br />
-            平均溫度 {{ apiData.current.temp_f }} °F
-          </div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">
-            體感溫度 {{ apiData.current.feelslike_c }} °C
-            <br />
-            體感溫度 {{ apiData.current.feelslike_f }} °F
-          </div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">
-            風速 {{ apiData.current.wind_kph }} km/h
-          </div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">
-            濕度 {{ apiData.current.humidity }}
-          </div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light value.slice(0,value.index0f('.'+4))">
-            懸浮微粒 {{ apiData.current.air_quality.pm2_5.toFixed(2) }}
-          </div>
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">
-            紫外線
-            {{ apiData.current.uv }}
+        <div class="col-6">
+          <div class="row">
+            <div class="col-4">
+              <div class="row column">
+                <div class="col-12">Today AM6:00</div>
+                <div class="col-12">紫外線</div>
+                <div class="col-12">PM2.5</div>
+                <div class="col-12">溫度</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row column">
+                <div class="col-12">Today AM6:00</div>
+                <div class="col-12">紫外線</div>
+                <div class="col-12">PM2.5</div>
+                <div class="col-12">溫度</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row column">
+                <div class="col-12">Today AM6:00</div>
+                <div class="col-12">紫外線</div>
+                <div class="col-12">PM2.5</div>
+                <div class="col-12">溫度</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -145,5 +145,16 @@ export default {
 <style lang="scss">
 .weather {
   color: #000000;
+  .row.column {
+    padding: 13px;
+    margin-right: 1px;
+    margin-bottom: 10px;
+    --bs-bg-opacity: 1;
+    background-color: rgba(
+      var(--bs-light-rgb),
+      var(--bs-bg-opacity)
+    ) !important;
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+  }
 }
 </style>
