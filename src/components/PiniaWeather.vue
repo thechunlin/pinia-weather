@@ -57,18 +57,16 @@
                   </p>
                 </div>
                 <div class="col-6 align-self-center">
-                  <p>{{ change.aa }}</p>
-                  <h1>{{ change.nowTemp }} {{ change.unit }}</h1>
+                  <h2>
+                    {{ apiData.current.temp_c }}°C/{{
+                      apiData.current.temp_f
+                    }}°F
+                  </h2>
                   <p class="m-0">
-                    Feellike : {{ change.feelTemp }}{{ change.unit }}
+                    Feellike : {{ apiData.current.feelslike_c }}°C/{{
+                      apiData.current.feelslike_f
+                    }}°F
                   </p>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary"
-                    v-on:click="changeTemp"
-                  >
-                    <map-marker-radius-outline-icon fillColor="#FFa1e0" />
-                  </button>
                 </div>
               </div>
             </div>
@@ -179,11 +177,6 @@ export default {
         'https://api.weatherapi.com/v1/current.json?key=424993aae23147a1afb32605222207&q=',
       keyword: '',
       apiData: '',
-      change: {
-        nowTemp: '',
-        feelTemp: '',
-        unit: '°C'
-      },
       Columns: {
         lat: '',
         lon: '',
@@ -203,16 +196,12 @@ export default {
     fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
       .then((res) => res.json())
       .then((data) => {
-        this.change.nowTemp = data.current.temp_c
-        this.change.feelTemp = data.current.feelslike_c
         this.apiData = data
       })
 
     fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
       .then((res) => res.json())
       .then((data) => {
-        this.change.nowTemp = data.current.temp_c
-        this.change.feelTemp = data.current.feelslike_c
         this.apiData = data
       })
   },
@@ -226,8 +215,6 @@ export default {
       fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
         .then((res) => res.json())
         .then((data) => {
-          this.change.nowTemp = data.current.temp_c
-          this.change.feelTemp = data.current.feelslike_c
           this.apiData = data
         })
     },
@@ -239,21 +226,6 @@ export default {
           this.change.feelTemp = data.current.feelslike_c
           this.apiData = data
         })
-    },
-    changeTemp() {
-      if (this.change.nowTemp === this.apiData.current.temp_c) {
-        return (
-          (this.change.nowTemp = this.apiData.current.temp_f),
-          (this.change.unit = '°F'),
-          (this.change.feelTemp = this.apiData.current.feelslike_f)
-        )
-      } else {
-        return (
-          (this.change.nowTemp = this.apiData.current.temp_c),
-          (this.change.unit = '°C'),
-          (this.change.feelTemp = this.apiData.current.feelslike_c)
-        )
-      }
     }
   }
 }
