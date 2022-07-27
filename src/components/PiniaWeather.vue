@@ -222,8 +222,6 @@ export default {
       fetch(`${this.url_base},${this.Columns.search}&aqi=yes`)
         .then((res) => res.json())
         .then((data) => {
-          this.change.nowTemp = data.current.temp_c
-          this.change.feelTemp = data.current.feelslike_c
           this.apiData = data
         })
     }
