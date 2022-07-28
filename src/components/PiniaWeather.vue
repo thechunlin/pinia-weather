@@ -56,7 +56,6 @@
                     :src="
                       apiData.current.condition.icon.replace('64x64', '128x128')
                     "
-                    class="img-thumbnail"
                   />
                   <p class="m-0">
                     {{ apiData.current.condition.text }}
@@ -126,7 +125,6 @@
                     historyApiData.forecast.forecastday[0].hour[6].condition
                       .icon
                   "
-                  class="img-thumbnail"
                 />
                 <p class="m-0">
                   {{
@@ -137,10 +135,8 @@
                 <div><weather-pouring-icon fillColor="#3a4e72" /></div>
                 <p class="m-0">
                   {{
-                    historyApiData.forecast.forecastday[0].hour[6].chance_of_rain.replace(
-                      '64x64',
-                      '128x128'
-                    )
+                    historyApiData.forecast.forecastday[0].hour[6]
+                      .chance_of_rain
                   }}%
                 </p>
                 <div><thermometer-icon fillColor="#3a4e72" /></div>
@@ -160,7 +156,6 @@
                       '128x128'
                     )
                   "
-                  class="img-thumbnail"
                 />
                 <p class="m-0">
                   {{
@@ -197,11 +192,13 @@
           </div>
         </div>
       </div>
+      <p>{{ tomorrow }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment'
 import SunWirelessOutlineIcon from 'vue-material-design-icons/SunWirelessOutline.vue'
 import WeatherWindyIcon from 'vue-material-design-icons/WeatherWindy.vue'
 import FaceMaskOutlineIcon from 'vue-material-design-icons/FaceMaskOutline.vue'
@@ -242,12 +239,14 @@ export default {
         lon: '',
         search: ''
       },
-      today: ''
+      today: '',
+      tomorrow: ''
     }
   },
 
   created() {
-    this.today = new Date().toISOString().slice(0, 10)
+    this.today = moment().format('YYYY-MM-DD')
+    this.tomorrow = moment().add(1, 'days').format('YYYY-MM-DD')
   },
   async mounted() {
     const position = await this.getCoordinates()
