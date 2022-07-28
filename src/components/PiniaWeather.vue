@@ -2,24 +2,28 @@
   <div class="container">
     <div class="weather" v-if="apiData != ''">
       <div class="row">
-        <div class="col-4">
+        <div class="col-4" style="color: #56719a">
           <h4>{{ header }}</h4>
         </div>
-        <div class="col-4">
+        <div class="col-4" style="color: #56719a">
           <h5>{{ apiData.location.country }} {{ apiData.location.name }}</h5>
         </div>
       </div>
       <div class="row py-3">
         <div class="col-10">
           <div class="input-group mb-2 input-group-lg-3 maxlength-5">
-            <span class="input-group-text" id="basic-addon1">
+            <span
+              class="input-group-text"
+              id="basic-addon1"
+              style="background-color: #ffffff"
+            >
               {{ apiData.location.localtime }}(
               {{ apiData.location.tz_id }} )</span
             >
             <input
               type="text"
               class="form-control"
-              placeholder="cityname"
+              placeholder="city"
               v-model="Columns.search"
             />
             <button
@@ -46,7 +50,7 @@
         <div class="col-6">
           <div class="row">
             <div class="col-12">
-              <div class="row column">
+              <div class="row main">
                 <div class="col-6 align-self-center">
                   <img
                     :src="apiData.current.condition.icon"
@@ -81,36 +85,30 @@
             <div class="col-12">
               <div class="row column">
                 <div class="col-4 align-self-center">
-                  <div><wind-power-outline-icon fillColor="#FFa1e0" /></div>
+                  <div><wind-power-outline-icon fillColor="#e3ebfe" /></div>
                   <p class="m-0">{{ apiData.current.wind_kph }} km/h</p>
-                  <div>Wind</div>
                 </div>
                 <div class="col-4 align-self-center">
-                  <div><sun-wireless-outline-icon fillColor="#FFa1e0" /></div>
-                  <p class="m-0">{{ apiData.current.uv }}</p>
-                  <div><p class="m-0">UV</p></div>
+                  <div><sun-wireless-outline-icon fillColor="#e3ebfe" /></div>
+                  <p class="m-0">{{ apiData.current.uv }}mJ/cm2</p>
                 </div>
                 <div class="col-4 align-self-center">
-                  <div><face-mask-outline-icon fillColor="#FFa1e0" /></div>
+                  <div><face-mask-outline-icon fillColor="#e3ebfe" /></div>
                   <p class="m-0">
-                    {{ apiData.current.air_quality.pm2_5.toFixed(1) }}
+                    {{ apiData.current.air_quality.pm2_5.toFixed(1) }}μg/m3
                   </p>
-                  <p class="m-0">PM2.5</p>
                 </div>
                 <div class="col-4 align-self-center">
-                  <div><water-percent-icon fillColor="#FFa1e0" /></div>
+                  <div><water-percent-icon fillColor="#e3ebfe" /></div>
                   <p class="m-0">{{ apiData.current.humidity }}</p>
-                  <div><p class="m-0">Humidity</p></div>
                 </div>
                 <div class="col-4 align-self-center">
-                  <div><speedometer-icon fillColor="#FFa1e0" /></div>
-                  <p class="m-0">{{ apiData.current.pressure_mb }} mb</p>
-                  <div>Pressure</div>
+                  <div><speedometer-icon fillColor="#e3ebfe" /></div>
+                  <p class="m-0">{{ apiData.current.pressure_in }} inHG</p>
                 </div>
                 <div class="col-4 align-self-center">
-                  <div><weather-windy-icon fillColor="#FFa1e0" /></div>
+                  <div><weather-windy-icon fillColor="#e3ebfe" /></div>
                   <p class="m-0">{{ apiData.current.wind_dir }}</p>
-                  <div><p class="m-0">Wind Direction</p></div>
                 </div>
               </div>
             </div>
@@ -119,31 +117,73 @@
         <div class="col-6">
           <div class="row">
             <div class="col-4">
-              <div class="row column">
+              <div class="row day">
                 <p class="m-0">Today AM6:00</p>
-                <div><sun-wireless-outline-icon fillColor="#FFa1e0" /></div>
-                <p class="m-0">紫外線</p>
-                <div><face-mask-outline-icon fillColor="#FFa1e0" /></div>
-                <p class="m-0">PM2.5</p>
-                <p class="m-0">溫度</p>
+                <img
+                  :src="
+                    historyApiData.forecast.forecastday[0].hour[6].condition
+                      .icon
+                  "
+                  class="img-thumbnail"
+                />
+                <p class="m-0">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[6].condition
+                      .text
+                  }}
+                </p>
+                <div><weather-pouring-icon fillColor="#3a4e72" /></div>
+                <p class="m-0">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[6]
+                      .chance_of_rain
+                  }}%
+                </p>
+                <div><thermometer-icon fillColor="#3a4e72" /></div>
+                <p class="m-0">
+                  {{ historyApiData.forecast.forecastday[0].hour[6].temp_c }}°C/
+                  {{ historyApiData.forecast.forecastday[0].hour[6].temp_f }}°F
+                </p>
               </div>
             </div>
             <div class="col-4">
-              <div class="row column">
+              <div class="row day">
                 <p class="m-0">Today PM6:00</p>
-                <div><sun-wireless-outline-icon fillColor="#FFa1e0" /></div>
-                <p class="m-0">紫外線</p>
-                <div><face-mask-outline-icon fillColor="#FFa1e0" /></div>
-                <p class="m-0">PM2.5</p>
-                <p class="m-0">溫度</p>
+                <img
+                  :src="
+                    historyApiData.forecast.forecastday[0].hour[18].condition
+                      .icon
+                  "
+                  class="img-thumbnail"
+                />
+                <p class="m-0">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[6].condition
+                      .text
+                  }}
+                </p>
+                <div><weather-pouring-icon fillColor="#3a4e72" /></div>
+                <p class="m-0">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[18]
+                      .chance_of_rain
+                  }}%
+                </p>
+                <div><thermometer-icon fillColor="#3a4e72" /></div>
+                <p class="m-0">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[18].temp_c
+                  }}°C/
+                  {{ historyApiData.forecast.forecastday[0].hour[18].temp_f }}°F
+                </p>
               </div>
             </div>
             <div class="col-4">
-              <div class="row column">
+              <div class="row day">
                 <p class="m-0">Tomorrow</p>
-                <div><sun-wireless-outline-icon fillColor="#FFa1e0" /></div>
+                <div><sun-wireless-outline-icon fillColor="#3a4e72" /></div>
                 <p class="m-0">紫外線</p>
-                <div><face-mask-outline-icon fillColor="#FFa1e0" /></div>
+                <div><face-mask-outline-icon fillColor="#3a4e72" /></div>
                 <p class="m-0">PM2.5</p>
                 <p class="m-0">溫度</p>
               </div>
@@ -164,6 +204,8 @@ import SpeedometerIcon from 'vue-material-design-icons/Speedometer.vue'
 import WindPowerOutlineIcon from 'vue-material-design-icons/WindPowerOutline.vue'
 import MagnifyIcon from 'vue-material-design-icons/Magnify.vue'
 import MapMarkerRadiusOutlineIcon from 'vue-material-design-icons/MapMarkerRadiusOutline.vue'
+import WeatherPouringIcon from 'vue-material-design-icons/WeatherPouring.vue'
+import ThermometerIcon from 'vue-material-design-icons/Thermometer.vue'
 export default {
   components: {
     WeatherWindyIcon,
@@ -173,7 +215,9 @@ export default {
     SpeedometerIcon,
     WindPowerOutlineIcon,
     MagnifyIcon,
-    MapMarkerRadiusOutlineIcon
+    MapMarkerRadiusOutlineIcon,
+    WeatherPouringIcon,
+    ThermometerIcon
   },
   name: 'PiniaWeather',
   data() {
@@ -184,6 +228,7 @@ export default {
       url_base:
         'https://api.weatherapi.com/v1/current.json?key=424993aae23147a1afb32605222207&q=',
       keyword: '',
+      historyApiData: '',
       apiData: '',
       hour: '',
       Columns: {
@@ -194,6 +239,7 @@ export default {
       today: ''
     }
   },
+
   created() {
     this.today = new Date().toISOString().slice(0, 10)
   },
@@ -202,10 +248,12 @@ export default {
     this.Columns.lat = position.coords.latitude
     this.Columns.lon = position.coords.longitude
 
-    fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
+    fetch(
+      `${this.history_url_base}${this.Columns.lat},${this.Columns.lon}&dt=${this.today}`
+    )
       .then((res) => res.json())
       .then((data) => {
-        this.apiData = data
+        this.historyApiData = data
       })
 
     fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
@@ -234,6 +282,11 @@ export default {
         .then((data) => {
           this.apiData = data
         })
+      fetch(`${this.history_url_base},${this.Columns.search}&dt=${this.today}`)
+        .then((res) => res.json())
+        .then((data) => {
+          this.historyApiData = data
+        })
     }
   }
 }
@@ -242,15 +295,33 @@ export default {
 <style lang="scss">
 .weather {
   color: #000000;
-  .row.column {
+  .row.main {
+    color: #3a4e72;
     padding: 13px;
     margin-right: 1px;
     margin-bottom: 10px;
     --bs-bg-opacity: 1;
-    background-color: rgba(
-      var(--bs-light-rgb),
-      var(--bs-bg-opacity)
-    ) !important;
+    background-color: #c4d8fd !important;
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+    border-radius: var(--bs-border-radius) !important;
+  }
+  .row.column {
+    color: white;
+    padding: 13px;
+    margin-right: 1px;
+    margin-bottom: 10px;
+    --bs-bg-opacity: 1;
+    background-color: #9fb6e0 !important;
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+    border-radius: var(--bs-border-radius) !important;
+  }
+  .row.day {
+    color: #3a4e72;
+    padding: 13px;
+    margin-right: 1px;
+    margin-bottom: 10px;
+    --bs-bg-opacity: 1;
+    background-color: #d1e2ff !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
     border-radius: var(--bs-border-radius) !important;
   }
