@@ -275,6 +275,13 @@ export default {
         .then((data) => {
           this.apiData = data
         })
+      fetch(
+        `${this.history_url_base}${this.Columns.lat},${this.Columns.lon}&dt=${this.today}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          this.historyApiData = data
+        })
     },
     searchCoordinates() {
       fetch(`${this.url_base},${this.Columns.search}&aqi=yes`)
