@@ -47,7 +47,7 @@
       </div>
       <!-- row-cols-lg-4 g-5 -->
       <div class="row">
-        <div class="col-6">
+        <div class="col-sm-12 col-lg-6">
           <div class="row">
             <div class="col-12">
               <div class="row main">
@@ -114,7 +114,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-sm-12 col-lg-6">
           <div class="row">
             <div class="col-4">
               <div class="row day">
