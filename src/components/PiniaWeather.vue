@@ -53,7 +53,9 @@
               <div class="row main">
                 <div class="col-6 align-self-center">
                   <img
-                    :src="apiData.current.condition.icon"
+                    :src="
+                      apiData.current.condition.icon.replace('64x64', '128x128')
+                    "
                     class="img-thumbnail"
                   />
                   <p class="m-0">
@@ -135,8 +137,10 @@
                 <div><weather-pouring-icon fillColor="#3a4e72" /></div>
                 <p class="m-0">
                   {{
-                    historyApiData.forecast.forecastday[0].hour[6]
-                      .chance_of_rain
+                    historyApiData.forecast.forecastday[0].hour[6].chance_of_rain.replace(
+                      '64x64',
+                      '128x128'
+                    )
                   }}%
                 </p>
                 <div><thermometer-icon fillColor="#3a4e72" /></div>
@@ -151,8 +155,10 @@
                 <p class="m-0">Today PM6:00</p>
                 <img
                   :src="
-                    historyApiData.forecast.forecastday[0].hour[18].condition
-                      .icon
+                    historyApiData.forecast.forecastday[0].hour[18].condition.icon.replace(
+                      '64x64',
+                      '128x128'
+                    )
                   "
                   class="img-thumbnail"
                 />
