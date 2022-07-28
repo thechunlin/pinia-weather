@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: white;
+  background-color: #e3ebfe;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
