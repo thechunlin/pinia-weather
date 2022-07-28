@@ -55,6 +55,14 @@
                   <p class="m-0">
                     {{ apiData.current.condition.text }}
                   </p>
+
+                  <p class="m-0">
+                    <weather-pouring-icon fillColor="#3a4e72" />
+                    {{
+                      historyApiData.forecast.forecastday[0].hour[hour]
+                        .chance_of_rain
+                    }}%
+                  </p>
                 </div>
                 <div class="col-6 align-self-center">
                   <h2>
@@ -177,6 +185,7 @@ export default {
         'https://api.weatherapi.com/v1/current.json?key=424993aae23147a1afb32605222207&q=',
       keyword: '',
       apiData: '',
+      hour: '',
       Columns: {
         lat: '',
         lon: '',
@@ -203,6 +212,7 @@ export default {
       .then((res) => res.json())
       .then((data) => {
         this.apiData = data
+        this.hour = data.location.localtime[11] + data.location.localtime[12]
       })
   },
   methods: {
