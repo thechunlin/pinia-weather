@@ -159,7 +159,7 @@
                 />
                 <p class="m-0">
                   {{
-                    historyApiData.forecast.forecastday[0].hour[6].condition
+                    historyApiData.forecast.forecastday[0].hour[18].condition
                       .text
                   }}
                 </p>
