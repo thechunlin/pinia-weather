@@ -181,18 +181,36 @@
             </div>
             <div class="col-4">
               <div class="row day">
-                <p class="m-0">Tomorrow</p>
-                <div><sun-wireless-outline-icon fillColor="#3a4e72" /></div>
-                <p class="m-0">紫外線</p>
-                <div><face-mask-outline-icon fillColor="#3a4e72" /></div>
-                <p class="m-0">PM2.5</p>
-                <p class="m-0">溫度</p>
+                <p class="m-0">Tomorrow AM6:00</p>
+                <img
+                  :src="
+                    tomorrowData.forecast.forecastday[0].hour[6].condition.icon.replace(
+                      '64x64',
+                      '128x128'
+                    )
+                  "
+                />
+                <p class="m-0">
+                  {{
+                    tomorrowData.forecast.forecastday[0].hour[6].condition.text
+                  }}
+                </p>
+                <div><weather-pouring-icon fillColor="#3a4e72" /></div>
+                <p class="m-0">
+                  {{
+                    tomorrowData.forecast.forecastday[0].hour[6].chance_of_rain
+                  }}%
+                </p>
+                <div><thermometer-icon fillColor="#3a4e72" /></div>
+                <p class="m-0">
+                  {{ tomorrowData.forecast.forecastday[0].hour[6].temp_c }}°C/
+                  {{ tomorrowData.forecast.forecastday[0].hour[6].temp_f }}°F
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <p>{{ tomorrow }}</p>
     </div>
   </div>
 </template>
@@ -234,6 +252,7 @@ export default {
       historyApiData: '',
       apiData: '',
       hour: '',
+      tomorrowData: '',
       Columns: {
         lat: '',
         lon: '',
@@ -267,6 +286,14 @@ export default {
         this.apiData = data
         this.hour = data.location.localtime[11] + data.location.localtime[12]
       })
+
+    fetch(
+      `${this.history_url_base}${this.Columns.lat},${this.Columns.lon}&dt=${this.tomorrow}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        this.tomorrowData = data
+      })
   },
   methods: {
     getCoordinates() {
@@ -287,6 +314,13 @@ export default {
         .then((data) => {
           this.historyApiData = data
         })
+      fetch(
+        `${this.history_url_base}${this.Columns.lat},${this.Columns.lon}&dt=${this.tomorrow}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          this.tomorrowData = data
+        })
     },
     searchCoordinates() {
       fetch(`${this.url_base},${this.Columns.search}&aqi=yes`)
@@ -298,6 +332,13 @@ export default {
         .then((res) => res.json())
         .then((data) => {
           this.historyApiData = data
+        })
+      fetch(
+        `${this.history_url_base},${this.Columns.search}&dt=${this.tomorrow}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          this.tomorrowData = data
         })
     }
   }
