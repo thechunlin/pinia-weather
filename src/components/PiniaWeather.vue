@@ -122,8 +122,10 @@
                 <p class="m-0">Today AM6:00</p>
                 <img
                   :src="
-                    historyApiData.forecast.forecastday[0].hour[6].condition
-                      .icon
+                    historyApiData.forecast.forecastday[0].hour[6].condition.icon.replace(
+                      '64x64',
+                      '128x128'
+                    )
                   "
                 />
                 <p class="m-0">
