@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="weather" v-if="apiData != ''">
+    <div class="weather" v-if="apiData != '' || tomorrowData != ''">
       <div class="row">
         <div class="col-4" style="color: #56719a">
           <h4>{{ header }}</h4>
@@ -31,7 +31,7 @@
               class="btn btn-info"
               v-on:click="searchCoordinates"
             >
-              <magnify-icon fillColor="#3a4e72" />
+              <magnify-icon fillColor="#e3ebfe" />
             </button>
           </div>
         </div>
@@ -41,7 +41,7 @@
             class="btn btn-info"
             v-on:click="locationCoordinates"
           >
-            <map-marker-radius-outline-icon fillColor="#3a4e72" />
+            <map-marker-radius-outline-icon fillColor="#e3ebfe" />
           </button>
         </div>
       </div>
@@ -144,7 +144,7 @@
                   }}
                 </p>
                 <div>
-                  <weather-pouring-icon fillColor="#3a4e72" size="64" />
+                  <weather-pouring-icon fillColor="#3a4e72" :size="64" />
                 </div>
                 <p class="m-0">
                   {{
@@ -152,7 +152,7 @@
                       .chance_of_rain
                   }}%
                 </p>
-                <div><thermometer-icon fillColor="#3a4e72" size="64" /></div>
+                <div><thermometer-icon fillColor="#3a4e72" :size="64" /></div>
                 <p class="m-0">
                   {{ historyApiData.forecast.forecastday[0].hour[6].temp_c }}°C/
                   {{ historyApiData.forecast.forecastday[0].hour[6].temp_f }}°F
@@ -177,7 +177,7 @@
                   }}
                 </p>
                 <div>
-                  <weather-pouring-icon fillColor="#3a4e72" size="64" />
+                  <weather-pouring-icon fillColor="#3a4e72" :size="64" />
                 </div>
                 <p class="m-0">
                   {{
@@ -185,7 +185,7 @@
                       .chance_of_rain
                   }}%
                 </p>
-                <div><thermometer-icon fillColor="#3a4e72" size="64" /></div>
+                <div><thermometer-icon fillColor="#3a4e72" :size="64" /></div>
                 <p class="m-0">
                   {{
                     historyApiData.forecast.forecastday[0].hour[18].temp_c
@@ -211,14 +211,14 @@
                   }}
                 </p>
                 <div>
-                  <weather-pouring-icon fillColor="#3a4e72" size="64" />
+                  <weather-pouring-icon fillColor="#3a4e72" :size="64" />
                 </div>
                 <p class="m-0">
                   {{
                     tomorrowData.forecast.forecastday[0].hour[6].chance_of_rain
                   }}%
                 </p>
-                <div><thermometer-icon fillColor="#3a4e72" size="64" /></div>
+                <div><thermometer-icon fillColor="#3a4e72" :size="64" /></div>
                 <p class="m-0">
                   {{ tomorrowData.forecast.forecastday[0].hour[6].temp_c }}°C/
                   {{ tomorrowData.forecast.forecastday[0].hour[6].temp_f }}°F
@@ -266,7 +266,7 @@ export default {
       url_base:
         'https://api.weatherapi.com/v1/current.json?key=424993aae23147a1afb32605222207&q=',
       keyword: '',
-      historyApiData: '',
+      historyApiData: {},
       apiData: '',
       hour: '',
       tomorrowData: '',
@@ -280,11 +280,9 @@ export default {
     }
   },
 
-  created() {
+  async mounted() {
     this.today = moment().format('YYYY-MM-DD')
     this.tomorrow = moment().add(1, 'days').format('YYYY-MM-DD')
-  },
-  async mounted() {
     const position = await this.getCoordinates()
     this.Columns.lat = position.coords.latitude
     this.Columns.lon = position.coords.longitude
