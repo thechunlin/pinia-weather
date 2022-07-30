@@ -60,16 +60,15 @@
                   <p class="m-0">
                     {{ apiData.current.condition.text }}
                   </p>
-
-                  <p class="m-0">
-                    <weather-pouring-icon fillColor="#3a4e72" />
+                </div>
+                <div class="col-6 align-self-center">
+                  <h3 class="m-0">
+                    <weather-pouring-icon fillColor="#3a4e72" :size="48" />
                     {{
                       historyApiData.forecast.forecastday[0].hour[hour]
                         .chance_of_rain
                     }}%
-                  </p>
-                </div>
-                <div class="col-6 align-self-center">
+                  </h3>
                   <h2>
                     {{ apiData.current.temp_c }}°C/{{
                       apiData.current.temp_f
@@ -86,29 +85,39 @@
             <div class="col-12">
               <div class="row column">
                 <div class="col-4 align-self-center">
-                  <div><wind-power-outline-icon fillColor="#e3ebfe" /></div>
+                  <div>
+                    <wind-power-outline-icon fillColor="#e3ebfe" :size="64" />
+                  </div>
                   <p class="m-0">{{ apiData.current.wind_kph }} km/h</p>
                 </div>
                 <div class="col-4 align-self-center">
-                  <div><sun-wireless-outline-icon fillColor="#e3ebfe" /></div>
+                  <div>
+                    <sun-wireless-outline-icon fillColor="#e3ebfe" :size="64" />
+                  </div>
                   <p class="m-0">{{ apiData.current.uv }}mJ/cm2</p>
                 </div>
                 <div class="col-4 align-self-center">
-                  <div><face-mask-outline-icon fillColor="#e3ebfe" /></div>
+                  <div>
+                    <face-mask-outline-icon fillColor="#e3ebfe" :size="64" />
+                  </div>
                   <p class="m-0">
                     {{ apiData.current.air_quality.pm2_5.toFixed(1) }}μg/m3
                   </p>
                 </div>
                 <div class="col-4 align-self-center">
-                  <div><water-percent-icon fillColor="#e3ebfe" /></div>
+                  <div>
+                    <water-percent-icon fillColor="#e3ebfe" :size="64" />
+                  </div>
                   <p class="m-0">{{ apiData.current.humidity }}</p>
                 </div>
                 <div class="col-4 align-self-center">
-                  <div><speedometer-icon fillColor="#e3ebfe" /></div>
+                  <div><speedometer-icon fillColor="#e3ebfe" :size="64" /></div>
                   <p class="m-0">{{ apiData.current.pressure_in }} inHG</p>
                 </div>
                 <div class="col-4 align-self-center">
-                  <div><weather-windy-icon fillColor="#e3ebfe" /></div>
+                  <div>
+                    <weather-windy-icon fillColor="#e3ebfe" :size="64" />
+                  </div>
                   <p class="m-0">{{ apiData.current.wind_dir }}</p>
                 </div>
               </div>
@@ -134,14 +143,16 @@
                       .text
                   }}
                 </p>
-                <div><weather-pouring-icon fillColor="#3a4e72" /></div>
+                <div>
+                  <weather-pouring-icon fillColor="#3a4e72" size="64" />
+                </div>
                 <p class="m-0">
                   {{
                     historyApiData.forecast.forecastday[0].hour[6]
                       .chance_of_rain
                   }}%
                 </p>
-                <div><thermometer-icon fillColor="#3a4e72" /></div>
+                <div><thermometer-icon fillColor="#3a4e72" size="64" /></div>
                 <p class="m-0">
                   {{ historyApiData.forecast.forecastday[0].hour[6].temp_c }}°C/
                   {{ historyApiData.forecast.forecastday[0].hour[6].temp_f }}°F
@@ -165,14 +176,16 @@
                       .text
                   }}
                 </p>
-                <div><weather-pouring-icon fillColor="#3a4e72" /></div>
+                <div>
+                  <weather-pouring-icon fillColor="#3a4e72" size="64" />
+                </div>
                 <p class="m-0">
                   {{
                     historyApiData.forecast.forecastday[0].hour[18]
                       .chance_of_rain
                   }}%
                 </p>
-                <div><thermometer-icon fillColor="#3a4e72" /></div>
+                <div><thermometer-icon fillColor="#3a4e72" size="64" /></div>
                 <p class="m-0">
                   {{
                     historyApiData.forecast.forecastday[0].hour[18].temp_c
@@ -197,13 +210,15 @@
                     tomorrowData.forecast.forecastday[0].hour[6].condition.text
                   }}
                 </p>
-                <div><weather-pouring-icon fillColor="#3a4e72" /></div>
+                <div>
+                  <weather-pouring-icon fillColor="#3a4e72" size="64" />
+                </div>
                 <p class="m-0">
                   {{
                     tomorrowData.forecast.forecastday[0].hour[6].chance_of_rain
                   }}%
                 </p>
-                <div><thermometer-icon fillColor="#3a4e72" /></div>
+                <div><thermometer-icon fillColor="#3a4e72" size="64" /></div>
                 <p class="m-0">
                   {{ tomorrowData.forecast.forecastday[0].hour[6].temp_c }}°C/
                   {{ tomorrowData.forecast.forecastday[0].hour[6].temp_f }}°F
@@ -369,10 +384,14 @@ export default {
     background-color: #7393ce !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
     border-radius: var(--bs-border-radius) !important;
+    .col-4 {
+      padding: 16px;
+    }
   }
   .row.day {
     color: #3a4e72;
     padding: 13px;
+    padding-bottom: 65px;
     margin-right: 1px;
     margin-bottom: 10px;
     --bs-bg-opacity: 1;
