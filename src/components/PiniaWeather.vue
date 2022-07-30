@@ -286,7 +286,7 @@ export default {
       .then((res) => res.json())
       .then((data) => {
         this.apiData = data
-        this.hour = data.location.localtime[11] + data.location.localtime[12]
+        this.hour = data.location.localtime.substr(11, 2)
       })
 
     fetch(
