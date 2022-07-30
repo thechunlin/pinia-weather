@@ -10,22 +10,22 @@
         </div>
       </div>
       <div class="row py-3">
-        <div class="col-10">
-          <div class="input-group mb-2 input-group-lg-3 maxlength-5">
-            <span
-              class="input-group-text"
-              id="basic-addon1"
-              style="background-color: #ffffff"
-            >
-              {{ apiData.location.localtime }}(
-              {{ apiData.location.tz_id }} )</span
-            >
-            <input
-              type="text"
-              class="form-control"
-              placeholder="city"
-              v-model="Columns.search"
-            />
+        <div class="input-group mb-2 input-group-lg-3 maxlength-5">
+          <span
+            class="input-group-text"
+            id="basic-addon1"
+            style="background-color: #ffffff"
+          >
+            {{ apiData.location.localtime }}(
+            {{ apiData.location.tz_id }} )</span
+          >
+          <input
+            type="text"
+            class="form-control"
+            placeholder="city"
+            v-model="Columns.search"
+          />
+          <div class="btn-group" role="group" aria-label="Basic example">
             <button
               type="button"
               class="btn btn-info"
@@ -33,16 +33,14 @@
             >
               <magnify-icon fillColor="#e3ebfe" />
             </button>
+            <button
+              type="button"
+              class="btn btn-info"
+              v-on:click="locationCoordinates"
+            >
+              <map-marker-radius-outline-icon fillColor="#e3ebfe" />
+            </button>
           </div>
-        </div>
-        <div class="col-2">
-          <button
-            type="button"
-            class="btn btn-info"
-            v-on:click="locationCoordinates"
-          >
-            <map-marker-radius-outline-icon fillColor="#e3ebfe" />
-          </button>
         </div>
       </div>
       <!-- row-cols-lg-4 g-5 -->
@@ -365,9 +363,6 @@ export default {
   color: #000000;
   .row.main {
     color: #3a4e72;
-    padding: 13px;
-    margin-right: 1px;
-    margin-bottom: 10px;
     --bs-bg-opacity: 1;
     background-color: #c4d8fd !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
@@ -375,23 +370,13 @@ export default {
   }
   .row.column {
     color: white;
-    padding: 13px;
-    margin-right: 1px;
-    margin-bottom: 10px;
     --bs-bg-opacity: 1;
     background-color: #7393ce !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
     border-radius: var(--bs-border-radius) !important;
-    .col-4 {
-      padding: 16px;
-    }
   }
   .row.day {
     color: #3a4e72;
-    padding: 13px;
-    padding-bottom: 65px;
-    margin-right: 1px;
-    margin-bottom: 10px;
     --bs-bg-opacity: 1;
     background-color: #d1e2ff !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
