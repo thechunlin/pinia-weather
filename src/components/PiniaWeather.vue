@@ -28,20 +28,20 @@
             />
             <button
               type="button"
-              class="btn btn-outline-primary"
+              class="btn btn-info"
               v-on:click="searchCoordinates"
             >
-              <magnify-icon fillColor="#FFa1e0" />
+              <magnify-icon fillColor="#3a4e72" />
             </button>
           </div>
         </div>
         <div class="col-2">
           <button
             type="button"
-            class="btn btn-outline-primary"
+            class="btn btn-info"
             v-on:click="locationCoordinates"
           >
-            <map-marker-radius-outline-icon fillColor="#FFa1e0" />
+            <map-marker-radius-outline-icon fillColor="#3a4e72" />
           </button>
         </div>
       </div>
@@ -364,7 +364,7 @@ export default {
     margin-right: 1px;
     margin-bottom: 10px;
     --bs-bg-opacity: 1;
-    background-color: #9fb6e0 !important;
+    background-color: #7393ce !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
     border-radius: var(--bs-border-radius) !important;
   }
