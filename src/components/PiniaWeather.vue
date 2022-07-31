@@ -362,6 +362,7 @@ export default {
 .weather {
   color: #000000;
   .row.main {
+    min-height: 250px;
     color: #3a4e72;
     --bs-bg-opacity: 1;
     background-color: #c4d8fd !important;
@@ -370,6 +371,7 @@ export default {
   }
   .row.column {
     color: white;
+    min-height: 250px;
     --bs-bg-opacity: 1;
     background-color: #7393ce !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
@@ -377,6 +379,7 @@ export default {
   }
   .row.day {
     color: #3a4e72;
+    min-height: 500px;
     --bs-bg-opacity: 1;
     background-color: #d1e2ff !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
