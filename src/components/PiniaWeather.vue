@@ -48,7 +48,7 @@
         <div class="col-sm-12 col-lg-6">
           <div class="row">
             <div class="col-12">
-              <div class="row main">
+              <div class="row main gx-1 mb-1">
                 <div class="col-6 align-self-center">
                   <img
                     :src="
@@ -82,7 +82,7 @@
               </div>
             </div>
             <div class="col-12">
-              <div class="row column">
+              <div class="row column gx-1 mt-1">
                 <div class="col-4 align-self-center">
                   <div>
                     <wind-power-outline-icon fillColor="#e3ebfe" :size="64" />
@@ -126,7 +126,7 @@
         <div class="col-sm-12 col-lg-6">
           <div class="row">
             <div class="col-4">
-              <div class="row day">
+              <div class="row day gx-1">
                 <p class="m-0">Today AM6:00</p>
                 <img
                   :src="
@@ -160,7 +160,7 @@
               </div>
             </div>
             <div class="col-4">
-              <div class="row day">
+              <div class="row day gx-1">
                 <p class="m-0">Today PM6:00</p>
                 <img
                   :src="
@@ -196,7 +196,7 @@
               </div>
             </div>
             <div class="col-4">
-              <div class="row day">
+              <div class="row day gx-1">
                 <p class="m-0">Tomorrow AM6:00</p>
                 <img
                   :src="
@@ -383,7 +383,7 @@ export default {
   }
   .row.day {
     color: #3a4e72;
-    min-height: 500px;
+    min-height: 510px;
     --bs-bg-opacity: 1;
     background-color: #d1e2ff !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
