@@ -54,6 +54,7 @@
                     :src="
                       apiData.current.condition.icon.replace('64x64', '128x128')
                     "
+                    style="align-self: center"
                   />
                   <p class="m-0">
                     {{ apiData.current.condition.text }}
@@ -134,6 +135,7 @@
                       '128x128'
                     )
                   "
+                  style="align-self: center"
                 />
                 <p class="m-0">
                   {{
@@ -167,6 +169,7 @@
                       '128x128'
                     )
                   "
+                  style="align-self: center"
                 />
                 <p class="m-0">
                   {{
@@ -202,6 +205,7 @@
                       '128x128'
                     )
                   "
+                  style="align-self: center"
                 />
                 <p class="m-0">
                   {{
