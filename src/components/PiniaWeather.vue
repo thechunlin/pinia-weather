@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="weather" v-if="apiData != '' || tomorrowData != ''">
+    <div class="Weather" v-if="apiData != '' || tomorrowData != ''">
       <div class="row">
         <div class="col-4" style="color: #56719a">
           <h4>{{ header }}</h4>
@@ -363,7 +363,7 @@ export default {
 </script>
 
 <style lang="scss">
-.weather {
+.Weather {
   color: #000000;
   .row.main {
     min-height: 250px;
