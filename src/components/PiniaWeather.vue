@@ -295,7 +295,6 @@ export default {
         'https://api.weatherapi.com/v1/history.json?key=424993aae23147a1afb32605222207&q=',
       url_base:
         'https://api.weatherapi.com/v1/current.json?key=424993aae23147a1afb32605222207&q=',
-      keyword: '',
       historyApiData: {},
       apiData: '',
       hour: '',
