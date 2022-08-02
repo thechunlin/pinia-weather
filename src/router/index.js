@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PiniaWeather from '../components/PiniaWeather.vue'
+import FutureWeather from '../components/FutureWeather.vue'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/Weather',
     name: 'Weather',
     component: PiniaWeather
+  },
+  {
+    path: '/Future',
+    name: 'Future',
+    component: FutureWeather
   }
 ]
 

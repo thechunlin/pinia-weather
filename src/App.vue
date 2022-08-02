@@ -3,7 +3,17 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
     <hr />
-    <router-link to="/Weather">PiniaWeather</router-link>
+
+    <div class="row">
+      <div class="col-sm-12 col-lg-4"></div>
+      <div class="col-sm-12 col-lg-4">
+        <router-link to="/Weather">PiniaWeather</router-link>
+      </div>
+
+      <div class="col-sm-12 col-lg-4">
+        <router-link to="/Future">FutureWeather</router-link>
+      </div>
+    </div>
   </nav>
   <router-view />
 </template>
