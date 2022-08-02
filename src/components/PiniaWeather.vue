@@ -46,78 +46,92 @@
       <!-- row-cols-lg-4 g-5 -->
       <div class="row">
         <div class="col-sm-12 col-lg-6">
-          <div class="row">
+          <div class="row p-1">
             <div class="col-12">
-              <div class="row main gx-1 mb-1">
-                <div class="col-6 align-self-center">
-                  <img
-                    :src="
-                      apiData.current.condition.icon.replace('64x64', '128x128')
-                    "
-                    style="align-self: center"
-                  />
-                  <p class="m-0">
-                    {{ apiData.current.condition.text }}
-                  </p>
-                </div>
-                <div class="col-6 align-self-center">
-                  <h3 class="m-0">
-                    <weather-pouring-icon fillColor="#3a4e72" :size="48" />
-                    {{
-                      historyApiData.forecast.forecastday[0].hour[hour]
-                        .chance_of_rain
-                    }}%
-                  </h3>
-                  <h2>
-                    {{ apiData.current.temp_c }}°C/{{
-                      apiData.current.temp_f
-                    }}°F
-                  </h2>
-                  <p class="m-0">
-                    Feellike : {{ apiData.current.feelslike_c }}°C/{{
-                      apiData.current.feelslike_f
-                    }}°F
-                  </p>
+              <div>
+                <div class="row main">
+                  <div class="col-6 align-self-center">
+                    <img
+                      :src="
+                        apiData.current.condition.icon.replace(
+                          '64x64',
+                          '128x128'
+                        )
+                      "
+                      style="align-self: center"
+                    />
+                    <p class="m-0">
+                      {{ apiData.current.condition.text }}
+                    </p>
+                  </div>
+                  <div class="col-6 align-self-center">
+                    <h3 class="m-0">
+                      <weather-pouring-icon fillColor="#3a4e72" :size="48" />
+                      {{
+                        historyApiData.forecast.forecastday[0].hour[hour]
+                          .chance_of_rain
+                      }}%
+                    </h3>
+                    <h2>
+                      {{ apiData.current.temp_c }}°C/{{
+                        apiData.current.temp_f
+                      }}°F
+                    </h2>
+                    <p class="m-0">
+                      Feellike : {{ apiData.current.feelslike_c }}°C/{{
+                        apiData.current.feelslike_f
+                      }}°F
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="row p-1">
             <div class="col-12">
-              <div class="row column gx-1 mt-1">
-                <div class="col-4 align-self-center">
-                  <div>
-                    <wind-power-outline-icon fillColor="#e3ebfe" :size="64" />
+              <div>
+                <div class="row column">
+                  <div class="col-4 align-self-center">
+                    <div>
+                      <wind-power-outline-icon fillColor="#e3ebfe" :size="64" />
+                    </div>
+                    <p class="m-0">{{ apiData.current.wind_kph }} km/h</p>
                   </div>
-                  <p class="m-0">{{ apiData.current.wind_kph }} km/h</p>
-                </div>
-                <div class="col-4 align-self-center">
-                  <div>
-                    <sun-wireless-outline-icon fillColor="#e3ebfe" :size="64" />
+                  <div class="col-4 align-self-center">
+                    <div>
+                      <sun-wireless-outline-icon
+                        fillColor="#e3ebfe"
+                        :size="64"
+                      />
+                    </div>
+                    <p class="m-0">{{ apiData.current.uv }}mJ/cm2</p>
                   </div>
-                  <p class="m-0">{{ apiData.current.uv }}mJ/cm2</p>
-                </div>
-                <div class="col-4 align-self-center">
-                  <div>
-                    <face-mask-outline-icon fillColor="#e3ebfe" :size="64" />
+                  <div class="col-4 align-self-center">
+                    <div>
+                      <face-mask-outline-icon fillColor="#e3ebfe" :size="64" />
+                    </div>
+                    <p class="m-0">
+                      {{ apiData.current.air_quality.pm2_5.toFixed(1) }}μg/m3
+                    </p>
                   </div>
-                  <p class="m-0">
-                    {{ apiData.current.air_quality.pm2_5.toFixed(1) }}μg/m3
-                  </p>
-                </div>
-                <div class="col-4 align-self-center">
-                  <div>
-                    <water-percent-icon fillColor="#e3ebfe" :size="64" />
+                  <div class="col-4 align-self-center">
+                    <div>
+                      <water-percent-icon fillColor="#e3ebfe" :size="64" />
+                    </div>
+                    <p class="m-0">{{ apiData.current.humidity }}</p>
                   </div>
-                  <p class="m-0">{{ apiData.current.humidity }}</p>
-                </div>
-                <div class="col-4 align-self-center">
-                  <div><speedometer-icon fillColor="#e3ebfe" :size="64" /></div>
-                  <p class="m-0">{{ apiData.current.pressure_in }} inHG</p>
-                </div>
-                <div class="col-4 align-self-center">
-                  <div>
-                    <weather-windy-icon fillColor="#e3ebfe" :size="64" />
+                  <div class="col-4 align-self-center">
+                    <div>
+                      <speedometer-icon fillColor="#e3ebfe" :size="64" />
+                    </div>
+                    <p class="m-0">{{ apiData.current.pressure_in }} inHG</p>
                   </div>
-                  <p class="m-0">{{ apiData.current.wind_dir }}</p>
+                  <div class="col-4 align-self-center">
+                    <div>
+                      <weather-windy-icon fillColor="#e3ebfe" :size="64" />
+                    </div>
+                    <p class="m-0">{{ apiData.current.wind_dir }}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -126,105 +140,135 @@
         <div class="col-sm-12 col-lg-6">
           <div class="row">
             <div class="col-4">
-              <div class="row day gx-1">
-                <p class="m-0">Today AM6:00</p>
-                <img
-                  :src="
-                    historyApiData.forecast.forecastday[0].hour[6].condition.icon.replace(
-                      '64x64',
-                      '128x128'
-                    )
-                  "
-                  style="align-self: center"
-                />
-                <p class="m-0">
-                  {{
-                    historyApiData.forecast.forecastday[0].hour[6].condition
-                      .text
-                  }}
-                </p>
-                <div>
-                  <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+              <div>
+                <div class="row day p-1">
+                  <div>
+                    <p class="m-0">Today AM6:00</p>
+                    <img
+                      :src="
+                        historyApiData.forecast.forecastday[0].hour[6].condition.icon.replace(
+                          '64x64',
+                          '128x128'
+                        )
+                      "
+                      style="align-self: center"
+                    />
+                    <p class="m-0">
+                      {{
+                        historyApiData.forecast.forecastday[0].hour[6].condition
+                          .text
+                      }}
+                    </p>
+                    <div>
+                      <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+                    </div>
+                    <p class="m-0">
+                      {{
+                        historyApiData.forecast.forecastday[0].hour[6]
+                          .chance_of_rain
+                      }}%
+                    </p>
+                    <div>
+                      <thermometer-icon fillColor="#3a4e72" :size="64" />
+                    </div>
+                    <p class="m-0">
+                      {{
+                        historyApiData.forecast.forecastday[0].hour[6].temp_c
+                      }}°C/
+                      {{
+                        historyApiData.forecast.forecastday[0].hour[6].temp_f
+                      }}°F
+                    </p>
+                  </div>
                 </div>
-                <p class="m-0">
-                  {{
-                    historyApiData.forecast.forecastday[0].hour[6]
-                      .chance_of_rain
-                  }}%
-                </p>
-                <div><thermometer-icon fillColor="#3a4e72" :size="64" /></div>
-                <p class="m-0">
-                  {{ historyApiData.forecast.forecastday[0].hour[6].temp_c }}°C/
-                  {{ historyApiData.forecast.forecastday[0].hour[6].temp_f }}°F
-                </p>
               </div>
             </div>
             <div class="col-4">
-              <div class="row day gx-1">
-                <p class="m-0">Today PM6:00</p>
-                <img
-                  :src="
-                    historyApiData.forecast.forecastday[0].hour[18].condition.icon.replace(
-                      '64x64',
-                      '128x128'
-                    )
-                  "
-                  style="align-self: center"
-                />
-                <p class="m-0">
-                  {{
-                    historyApiData.forecast.forecastday[0].hour[18].condition
-                      .text
-                  }}
-                </p>
-                <div>
-                  <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+              <div>
+                <div class="row day p-1">
+                  <div>
+                    <p class="m-0">Today PM6:00</p>
+                    <img
+                      :src="
+                        historyApiData.forecast.forecastday[0].hour[18].condition.icon.replace(
+                          '64x64',
+                          '128x128'
+                        )
+                      "
+                      style="align-self: center"
+                    />
+                    <p class="m-0">
+                      {{
+                        historyApiData.forecast.forecastday[0].hour[18]
+                          .condition.text
+                      }}
+                    </p>
+                    <div>
+                      <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+                    </div>
+                    <p class="m-0">
+                      {{
+                        historyApiData.forecast.forecastday[0].hour[18]
+                          .chance_of_rain
+                      }}%
+                    </p>
+                    <div>
+                      <thermometer-icon fillColor="#3a4e72" :size="64" />
+                    </div>
+                    <p class="m-0">
+                      {{
+                        historyApiData.forecast.forecastday[0].hour[18].temp_c
+                      }}°C/
+                      {{
+                        historyApiData.forecast.forecastday[0].hour[18].temp_f
+                      }}°F
+                    </p>
+                  </div>
                 </div>
-                <p class="m-0">
-                  {{
-                    historyApiData.forecast.forecastday[0].hour[18]
-                      .chance_of_rain
-                  }}%
-                </p>
-                <div><thermometer-icon fillColor="#3a4e72" :size="64" /></div>
-                <p class="m-0">
-                  {{
-                    historyApiData.forecast.forecastday[0].hour[18].temp_c
-                  }}°C/
-                  {{ historyApiData.forecast.forecastday[0].hour[18].temp_f }}°F
-                </p>
               </div>
             </div>
             <div class="col-4">
-              <div class="row day gx-1">
-                <p class="m-0">Tomorrow AM6:00</p>
-                <img
-                  :src="
-                    tomorrowData.forecast.forecastday[0].hour[6].condition.icon.replace(
-                      '64x64',
-                      '128x128'
-                    )
-                  "
-                  style="align-self: center"
-                />
-                <p class="m-0">
-                  {{
-                    tomorrowData.forecast.forecastday[0].hour[6].condition.text
-                  }}
-                </p>
-                <div>
-                  <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+              <div>
+                <div class="row day p-1">
+                  <div>
+                    <p class="m-0">Tomorrow AM6:00</p>
+                    <img
+                      :src="
+                        tomorrowData.forecast.forecastday[0].hour[6].condition.icon.replace(
+                          '64x64',
+                          '128x128'
+                        )
+                      "
+                      style="align-self: center"
+                    />
+                    <p class="m-0">
+                      {{
+                        tomorrowData.forecast.forecastday[0].hour[6].condition
+                          .text
+                      }}
+                    </p>
+                    <div>
+                      <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+                    </div>
+                    <p class="m-0">
+                      {{
+                        tomorrowData.forecast.forecastday[0].hour[6]
+                          .chance_of_rain
+                      }}%
+                    </p>
+                    <div>
+                      <thermometer-icon fillColor="#3a4e72" :size="64" />
+                    </div>
+                    <p class="m-0">
+                      {{
+                        tomorrowData.forecast.forecastday[0].hour[6].temp_c
+                      }}°C/
+                      {{
+                        tomorrowData.forecast.forecastday[0].hour[6].temp_f
+                      }}°F
+                    </p>
+                  </div>
                 </div>
-                <p class="m-0">
-                  {{
-                    tomorrowData.forecast.forecastday[0].hour[6].chance_of_rain
-                  }}%
-                </p>
-                <div><thermometer-icon fillColor="#3a4e72" :size="64" /></div>
-                <p class="m-0">
-                  {{ tomorrowData.forecast.forecastday[0].hour[6].temp_c }}°C/
-                  {{ tomorrowData.forecast.forecastday[0].hour[6].temp_f }}°F
-                </p>
               </div>
             </div>
           </div>
@@ -381,9 +425,9 @@ export default {
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
     border-radius: var(--bs-border-radius) !important;
   }
-  .row.day {
+  .row.day.p-1 div {
     color: #3a4e72;
-    min-height: 510px;
+    min-height: 141px;
     --bs-bg-opacity: 1;
     background-color: #d1e2ff !important;
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
