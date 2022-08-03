@@ -142,7 +142,7 @@
             <div class="col-4">
               <div class="row day p-1">
                 <div>
-                  <p class="m-0">Today AM6:00</p>
+                  <p class="m-3">Today AM6:00</p>
                   <img
                     :src="
                       historyApiData.forecast.forecastday[0].hour[6].condition.icon.replace(
@@ -152,7 +152,7 @@
                     "
                     style="align-self: center"
                   />
-                  <p class="m-0">
+                  <p class="m-3">
                     {{
                       historyApiData.forecast.forecastday[0].hour[6].condition
                         .text
@@ -160,7 +160,7 @@
                   </p>
                   <weather-pouring-icon fillColor="#3a4e72" :size="64" />
 
-                  <p class="m-0">
+                  <p class="m-3">
                     {{
                       historyApiData.forecast.forecastday[0].hour[6]
                         .chance_of_rain
@@ -168,7 +168,7 @@
                   </p>
                   <thermometer-icon fillColor="#3a4e72" :size="64" />
 
-                  <p class="m-0">
+                  <p class="m-3">
                     {{
                       historyApiData.forecast.forecastday[0].hour[6].temp_c
                     }}°C/
@@ -182,7 +182,7 @@
             <div class="col-4">
               <div class="row day p-1">
                 <div>
-                  <p class="m-0">Today PM6:00</p>
+                  <p class="m-3">Today PM6:00</p>
                   <img
                     :src="
                       historyApiData.forecast.forecastday[0].hour[18].condition.icon.replace(
@@ -192,7 +192,7 @@
                     "
                     style="align-self: center"
                   />
-                  <p class="m-0">
+                  <p class="m-3">
                     {{
                       historyApiData.forecast.forecastday[0].hour[18].condition
                         .text
@@ -200,7 +200,7 @@
                   </p>
                   <weather-pouring-icon fillColor="#3a4e72" :size="64" />
 
-                  <p class="m-0">
+                  <p class="m-3">
                     {{
                       historyApiData.forecast.forecastday[0].hour[18]
                         .chance_of_rain
@@ -208,7 +208,7 @@
                   </p>
                   <thermometer-icon fillColor="#3a4e72" :size="64" />
 
-                  <p class="m-0">
+                  <p class="m-3">
                     {{
                       historyApiData.forecast.forecastday[0].hour[18].temp_c
                     }}°C/
@@ -222,7 +222,7 @@
             <div class="col-4">
               <div class="row day p-1">
                 <div>
-                  <p class="m-0">Tomorrow AM6:00</p>
+                  <p class="m-3">Tomorrow AM6:00</p>
                   <img
                     :src="
                       tomorrowData.forecast.forecastday[0].hour[6].condition.icon.replace(
@@ -232,7 +232,7 @@
                     "
                     style="align-self: center"
                   />
-                  <p class="m-0">
+                  <p class="m-3">
                     {{
                       tomorrowData.forecast.forecastday[0].hour[6].condition
                         .text
@@ -240,7 +240,7 @@
                   </p>
                   <weather-pouring-icon fillColor="#3a4e72" :size="64" />
 
-                  <p class="m-0">
+                  <p class="m-3">
                     {{
                       tomorrowData.forecast.forecastday[0].hour[6]
                         .chance_of_rain
@@ -248,7 +248,7 @@
                   </p>
                   <thermometer-icon fillColor="#3a4e72" :size="64" />
 
-                  <p class="m-0">
+                  <p class="m-3">
                     {{ tomorrowData.forecast.forecastday[0].hour[6].temp_c }}°C/
                     {{ tomorrowData.forecast.forecastday[0].hour[6].temp_f }}°F
                   </p>
