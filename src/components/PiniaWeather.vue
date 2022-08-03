@@ -263,6 +263,9 @@
 </template>
 
 <script>
+import { mapState } from 'pinia'
+import { useUserStore } from '@/store/user'
+
 import moment from 'moment'
 import SunWirelessOutlineIcon from 'vue-material-design-icons/SunWirelessOutline.vue'
 import WeatherWindyIcon from 'vue-material-design-icons/WeatherWindy.vue'
@@ -274,7 +277,11 @@ import MagnifyIcon from 'vue-material-design-icons/Magnify.vue'
 import MapMarkerRadiusOutlineIcon from 'vue-material-design-icons/MapMarkerRadiusOutline.vue'
 import WeatherPouringIcon from 'vue-material-design-icons/WeatherPouring.vue'
 import ThermometerIcon from 'vue-material-design-icons/Thermometer.vue'
+
 export default {
+  computed: {
+    ...mapState(useUserStore, ['header'])
+  },
   components: {
     WeatherWindyIcon,
     SunWirelessOutlineIcon,
@@ -290,7 +297,6 @@ export default {
   name: 'PiniaWeather',
   data() {
     return {
-      header: 'Weather Forecast',
       history_url_base:
         'https://api.weatherapi.com/v1/history.json?key=424993aae23147a1afb32605222207&q=',
       url_base:
@@ -339,6 +345,7 @@ export default {
         this.tomorrowData = data
       })
   },
+
   methods: {
     getCoordinates() {
       return new Promise(function (resolve, reject) {
