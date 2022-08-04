@@ -280,7 +280,18 @@ import ThermometerIcon from 'vue-material-design-icons/Thermometer.vue'
 
 export default {
   computed: {
-    ...mapState(useUserStore, ['header'])
+    ...mapState(useUserStore, [
+      'history_url_base',
+      'url_base',
+      'lat',
+      'lon',
+      'hour',
+      'historyApiData',
+      'today',
+      'tomorrow',
+      'apiData',
+      'tomorrowData'
+    ])
   },
   components: {
     WeatherWindyIcon,
@@ -297,53 +308,48 @@ export default {
   name: 'PiniaWeather',
   data() {
     return {
-      history_url_base:
-        'https://api.weatherapi.com/v1/history.json?key=424993aae23147a1afb32605222207&q=',
-      url_base:
-        'https://api.weatherapi.com/v1/current.json?key=424993aae23147a1afb32605222207&q=',
-      historyApiData: {},
-      apiData: '',
-      hour: '',
-      tomorrowData: '',
+      header: 'Weather Forecast',
       Columns: {
         lat: '',
         lon: '',
         search: ''
-      },
-      today: '',
-      tomorrow: ''
+      }
     }
   },
 
   async mounted() {
-    this.today = moment().format('YYYY-MM-DD')
-    this.tomorrow = moment().add(1, 'days').format('YYYY-MM-DD')
     const position = await this.getCoordinates()
-    this.Columns.lat = position.coords.latitude
-    this.Columns.lon = position.coords.longitude
 
-    fetch(
-      `${this.history_url_base}${this.Columns.lat},${this.Columns.lon}&dt=${this.today}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        this.historyApiData = data
-      })
+    const store = useUserStore()
+    store.$patch((state) => {
+      state.lat = position.coords.latitude
+      state.lon = position.coords.longitude
+      state.today = moment().format('YYYY-MM-DD')
+      state.tomorrow = moment().add(1, 'days').format('YYYY-MM-DD')
 
-    fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
-      .then((res) => res.json())
-      .then((data) => {
-        this.apiData = data
-        this.hour = data.location.localtime.substr(11, 2)
-      })
+      fetch(
+        `${state.history_url_base}${state.lat},${state.lon}&dt=${state.today}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          state.historyApiData = data
+        })
 
-    fetch(
-      `${this.history_url_base}${this.Columns.lat},${this.Columns.lon}&dt=${this.tomorrow}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        this.tomorrowData = data
-      })
+      fetch(`${state.url_base}${state.lat},${state.lon}&aqi=yes`)
+        .then((res) => res.json())
+        .then((data) => {
+          state.apiData = data
+          state.hour = data.location.localtime.substr(11, 2)
+        })
+
+      fetch(
+        `${state.history_url_base}${state.lat},${state.lon}&dt=${state.tomorrow}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          state.tomorrowData = data
+        })
+    })
   },
 
   methods: {
