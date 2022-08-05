@@ -105,6 +105,57 @@ export default {
     this.sixthDay = moment().add(5, 'days').format('YYYY-MM-DD')
     this.seventhDay = moment().add(6, 'days').format('YYYY-MM-DD')
     this.eigthDay = moment().add(7, 'days').format('YYYY-MM-DD')
+
+    const store = useUserStore()
+    store.$patch((state) => {
+      fetch(
+        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.thirdDay}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          state.historyApiData = data
+        })
+
+      fetch(
+        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.fourthDay}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          state.historyApiData = data
+        })
+
+      fetch(
+        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.fifthDay}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          state.historyApiData = data
+        })
+
+      fetch(
+        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.sixthDay}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          state.historyApiData = data
+        })
+
+      fetch(
+        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.seventhDay}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          state.historyApiData = data
+        })
+
+      fetch(
+        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.eigthDay}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          state.historyApiData = data
+        })
+    })
   }
 }
 </script>
