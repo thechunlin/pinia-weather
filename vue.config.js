@@ -5,6 +5,6 @@ module.exports = defineConfig({
     https: true
   },
   publicPath: process.env.NODE_ENV === 'production'
-   ? '/vue-todolist/'
+   ? '/pinia-weather/'
    : '/'
 })
