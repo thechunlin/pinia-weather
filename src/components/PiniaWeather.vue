@@ -23,7 +23,7 @@
             type="text"
             class="form-control"
             placeholder="city"
-            v-model="Columns.search"
+            v-model="search"
           />
           <div class="btn-group" role="group" aria-label="Basic example">
             <button
@@ -309,11 +309,7 @@ export default {
   data() {
     return {
       header: 'Weather Forecast',
-      Columns: {
-        lat: '',
-        lon: '',
-        search: ''
-      }
+      search: ''
     }
   },
 
@@ -359,44 +355,10 @@ export default {
       })
     },
     locationCoordinates() {
-      fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
-        .then((res) => res.json())
-        .then((data) => {
-          this.apiData = data
-        })
-      fetch(
-        `${this.history_url_base}${this.Columns.lat},${this.Columns.lon}&dt=${this.today}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.historyApiData = data
-        })
-      fetch(
-        `${this.history_url_base}${this.Columns.lat},${this.Columns.lon}&dt=${this.tomorrow}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.tomorrowData = data
-        })
+      useUserStore.locationCoordinates()
     },
-    searchCoordinates() {
-      fetch(`${this.url_base},${this.Columns.search}&aqi=yes`)
-        .then((res) => res.json())
-        .then((data) => {
-          this.apiData = data
-        })
-      fetch(`${this.history_url_base},${this.Columns.search}&dt=${this.today}`)
-        .then((res) => res.json())
-        .then((data) => {
-          this.historyApiData = data
-        })
-      fetch(
-        `${this.history_url_base},${this.Columns.search}&dt=${this.tomorrow}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.tomorrowData = data
-        })
+    searchCoordinates(search) {
+      useUserStore.searchCoordinates(search)
     }
   }
 }
