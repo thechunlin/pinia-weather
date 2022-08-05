@@ -3,5 +3,8 @@ module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
     https: true
-  }
+  },
+  publicPath: process.env.NODE_ENV === 'production'
+   ? '/vue-todolist/'
+   : '/'
 })
