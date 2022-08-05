@@ -159,8 +159,7 @@ export default {
   }
 }
 </script>
-fetch( `${state.history_url_base}${state.lat},${state.lon}&dt=${state.tomorrow}`
-) .then((res) => res.json()) .then((data) => { state.historyApiData = data })
+
 <style>
 .main {
   background: white;
