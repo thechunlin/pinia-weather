@@ -19,38 +19,35 @@
         </div>
         <div class="col-12 p-2">
           <div class="main">
+            <h4 style="margin: 1%">
+              LocalTime: {{ apiData.location.localtime }}
+            </h4>
             <div class="row">
               <div class="col-6 align-self-center">
                 <img
                   :src="
-                    tomorrowData.forecast.forecastday[0].day.condition.icon.replace(
-                      '64x64',
-                      '128x128'
-                    )
+                    apiData.current.condition.icon.replace('64x64', '128x128')
                   "
                   style="align-self: center"
                 />
                 <p class="m-0">
-                  {{ tomorrowData.forecast.forecastday[0].day.condition.text }}
+                  {{ apiData.current.condition.text }}
                 </p>
               </div>
               <div class="col-6 align-self-center">
                 <h3 class="m-0">
                   <weather-pouring-icon fillColor="#3a4e72" :size="48" />
                   {{
-                    tomorrowData.forecast.forecastday[0].hour[12]
+                    historyApiData.forecast.forecastday[0].hour[hour]
                       .chance_of_rain
                   }}%
                 </h3>
                 <h2>
-                  {{ tomorrowData.forecast.forecastday[0].day.avgtemp_c }}°C/{{
-                    tomorrowData.forecast.forecastday[0].day.avgtemp_f
-                  }}°F
+                  {{ apiData.current.temp_c }}°C/{{ apiData.current.temp_f }}°F
                 </h2>
                 <p class="m-0">
-                  MaxTemp :
-                  {{ tomorrowData.forecast.forecastday[0].day.maxtemp_c }}°C/{{
-                    tomorrowData.forecast.forecastday[0].day.maxtemp_f
+                  Feellike : {{ apiData.current.feelslike_c }}°C/{{
+                    apiData.current.feelslike_f
                   }}°F
                 </p>
               </div>
@@ -62,12 +59,199 @@
         <div class="col-12 p-2">
           <div class="secondary">
             <div class="row">
-              <div class="col-2"></div>
-              <div class="col-2"></div>
-              <div class="col-2"></div>
-              <div class="col-2"></div>
-              <div class="col-2"></div>
-              <div class="col-2"></div>
+              <div class="col-2">
+                <p class="m-3">AM 0:00</p>
+                <img
+                  :src="
+                    historyApiData.forecast.forecastday[0].hour[0].condition.icon.replace(
+                      '64x64',
+                      '128x128'
+                    )
+                  "
+                  style="align-self: center"
+                />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[0].condition
+                      .text
+                  }}
+                </p>
+                <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[0]
+                      .chance_of_rain
+                  }}%
+                </p>
+                <thermometer-icon fillColor="#3a4e72" :size="64" />
+
+                <p class="m-3">
+                  {{ historyApiData.forecast.forecastday[0].hour[0].temp_c }}°C/
+                  {{ historyApiData.forecast.forecastday[0].hour[0].temp_f }}°F
+                </p>
+              </div>
+              <div class="col-2">
+                <p class="m-3">AM 4:00</p>
+                <img
+                  :src="
+                    historyApiData.forecast.forecastday[0].hour[4].condition.icon.replace(
+                      '64x64',
+                      '128x128'
+                    )
+                  "
+                  style="align-self: center"
+                />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[4].condition
+                      .text
+                  }}
+                </p>
+
+                <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[4]
+                      .chance_of_rain
+                  }}%
+                </p>
+                <thermometer-icon fillColor="#3a4e72" :size="64" />
+
+                <p class="m-3">
+                  {{ historyApiData.forecast.forecastday[0].hour[4].temp_c }}°C/
+                  {{ historyApiData.forecast.forecastday[0].hour[4].temp_f }}°F
+                </p>
+              </div>
+              <div class="col-2">
+                <p class="m-3">AM 8:00</p>
+                <img
+                  :src="
+                    historyApiData.forecast.forecastday[0].hour[8].condition.icon.replace(
+                      '64x64',
+                      '128x128'
+                    )
+                  "
+                  style="align-self: center"
+                />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[8].condition
+                      .text
+                  }}
+                </p>
+                <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[8]
+                      .chance_of_rain
+                  }}%
+                </p>
+                <thermometer-icon fillColor="#3a4e72" :size="64" />
+
+                <p class="m-3">
+                  {{ historyApiData.forecast.forecastday[0].hour[8].temp_c }}°C/
+                  {{ historyApiData.forecast.forecastday[0].hour[8].temp_f }}°F
+                </p>
+              </div>
+              <div class="col-2">
+                <p class="m-3">PM 12:00</p>
+                <img
+                  :src="
+                    historyApiData.forecast.forecastday[0].hour[12].condition.icon.replace(
+                      '64x64',
+                      '128x128'
+                    )
+                  "
+                  style="align-self: center"
+                />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[12].condition
+                      .text
+                  }}
+                </p>
+                <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[12]
+                      .chance_of_rain
+                  }}%
+                </p>
+                <thermometer-icon fillColor="#3a4e72" :size="64" />
+
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[12].temp_c
+                  }}°C/
+                  {{ historyApiData.forecast.forecastday[0].hour[12].temp_f }}°F
+                </p>
+              </div>
+              <div class="col-2">
+                <p class="m-3">PM 4:00</p>
+                <img
+                  :src="
+                    historyApiData.forecast.forecastday[0].hour[16].condition.icon.replace(
+                      '64x64',
+                      '128x128'
+                    )
+                  "
+                  style="align-self: center"
+                />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[16].condition
+                      .text
+                  }}
+                </p>
+                <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[16]
+                      .chance_of_rain
+                  }}%
+                </p>
+                <thermometer-icon fillColor="#3a4e72" :size="64" />
+
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[16].temp_c
+                  }}°C/
+                  {{ historyApiData.forecast.forecastday[0].hour[16].temp_f }}°F
+                </p>
+              </div>
+              <div class="col-2">
+                <p class="m-3">PM 8:00</p>
+                <img
+                  :src="
+                    historyApiData.forecast.forecastday[0].hour[20].condition.icon.replace(
+                      '64x64',
+                      '128x128'
+                    )
+                  "
+                  style="align-self: center"
+                />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[20].condition
+                      .text
+                  }}
+                </p>
+                <weather-pouring-icon fillColor="#3a4e72" :size="64" />
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[20]
+                      .chance_of_rain
+                  }}%
+                </p>
+                <thermometer-icon fillColor="#3a4e72" :size="64" />
+
+                <p class="m-3">
+                  {{
+                    historyApiData.forecast.forecastday[0].hour[20].temp_c
+                  }}°C/
+                  {{ historyApiData.forecast.forecastday[0].hour[20].temp_f }}°F
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -81,6 +265,7 @@ import { mapState } from 'pinia'
 import { useUserStore } from '@/store/user'
 
 import WeatherPouringIcon from 'vue-material-design-icons/WeatherPouring.vue'
+import ThermometerIcon from 'vue-material-design-icons/Thermometer.vue'
 export default {
   computed: {
     ...mapState(useUserStore, [
@@ -97,7 +282,8 @@ export default {
     ])
   },
   components: {
-    WeatherPouringIcon
+    WeatherPouringIcon,
+    ThermometerIcon
   },
   data() {
     return {
@@ -109,11 +295,16 @@ export default {
 
 <style>
 .main {
-  background: white;
-  min-height: 30vh;
+  background-color: #c3cef0da !important;
+  border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+  border-radius: var(--bs-border-radius) !important;
+
+  min-height: 25vh;
 }
 .secondary {
-  background: white;
-  min-height: 30vh;
+  background-color: #a9c3f3 !important;
+  border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+  border-radius: var(--bs-border-radius) !important;
+  min-height: 50vh;
 }
 </style>
