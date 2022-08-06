@@ -62,12 +62,24 @@
         <div class="col-12 p-2">
           <div class="secondary">
             <div class="row">
-              <div class="col-2">{{ thirdDay }}</div>
-              <div class="col-2">{{ fourthDay }}</div>
-              <div class="col-2">{{ fifthDay }}</div>
-              <div class="col-2">{{ sixthDay }}</div>
-              <div class="col-2">{{ seventhDay }}</div>
-              <div class="col-2">{{ eigthDay }}</div>
+              <div class="col-2">
+                <p>{{ thirdDay }}</p>
+              </div>
+              <div class="col-2">
+                <p>{{ fourthDay }}</p>
+              </div>
+              <div class="col-2">
+                <p>{{ fifthDay }}</p>
+              </div>
+              <div class="col-2">
+                <p>{{ sixthDay }}</p>
+              </div>
+              <div class="col-2">
+                <p>{{ seventhDay }}</p>
+              </div>
+              <div class="col-2">
+                <p>{{ eigthDay }}</p>
+              </div>
             </div>
           </div>
         </div>
