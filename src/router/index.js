@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PiniaWeather from '../components/PiniaWeather.vue'
-import FutureWeather from '../components/FutureWeather.vue'
+import TodayWeather from '../components/TodayWeather.vue'
 
 const routes = [
   {
@@ -13,7 +13,8 @@ const routes = [
     path: '/about',
     name: 'about',
 
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
     path: '/Weather',
@@ -21,9 +22,9 @@ const routes = [
     component: PiniaWeather
   },
   {
-    path: '/Future',
-    name: 'Future',
-    component: FutureWeather
+    path: '/Today',
+    name: 'TodayWeather',
+    component: TodayWeather
   }
 ]
 

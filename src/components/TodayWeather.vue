@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div
-      class="Future"
+      class="TodayWeather"
       v-if="
         apiData != '' ||
         tomorrowData != '' ||

@@ -11,7 +11,7 @@
       </div>
 
       <div class="col-sm-12 col-lg-4">
-        <router-link to="/Future">FutureWeather</router-link>
+        <router-link to="/Today">TodayWeather</router-link>
       </div>
     </div>
   </nav>
