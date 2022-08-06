@@ -101,7 +101,15 @@ export default {
       fifthDay: '',
       sixthDay: '',
       seventhDay: '',
-      eigthDay: ''
+      eigthDay: '',
+      futureDate: {
+        thirdData: '',
+        fourthData: '',
+        fifthData: '',
+        sixthData: '',
+        seventhData: '',
+        eigthData: ''
+      }
     }
   },
 
@@ -120,7 +128,7 @@ export default {
       )
         .then((res) => res.json())
         .then((data) => {
-          state.historyApiData = data
+          this.futureDate.thirdData = data
         })
 
       fetch(
@@ -128,7 +136,7 @@ export default {
       )
         .then((res) => res.json())
         .then((data) => {
-          state.historyApiData = data
+          this.futureDate.fourthData = data
         })
 
       fetch(
@@ -136,7 +144,7 @@ export default {
       )
         .then((res) => res.json())
         .then((data) => {
-          state.historyApiData = data
+          this.futureDate.fifthData = data
         })
 
       fetch(
@@ -144,7 +152,7 @@ export default {
       )
         .then((res) => res.json())
         .then((data) => {
-          state.historyApiData = data
+          this.futureDate.sixthData = data
         })
 
       fetch(
@@ -152,7 +160,7 @@ export default {
       )
         .then((res) => res.json())
         .then((data) => {
-          state.historyApiData = data
+          this.futureDate.seventhData = data
         })
 
       fetch(
@@ -160,7 +168,7 @@ export default {
       )
         .then((res) => res.json())
         .then((data) => {
-          state.historyApiData = data
+          this.futureDate.eigthData = data
         })
     })
   }
