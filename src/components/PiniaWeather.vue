@@ -6,7 +6,7 @@
     >
       <div class="row">
         <div class="col-4" style="color: #56719a">
-          <h4>{{ header }}</h4>
+          <h5>{{ header }}</h5>
         </div>
         <div class="col-4" style="color: #56719a">
           <h5>{{ apiData.location.country }} {{ apiData.location.name }}</h5>
