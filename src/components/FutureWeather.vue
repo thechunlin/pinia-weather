@@ -62,24 +62,12 @@
         <div class="col-12 p-2">
           <div class="secondary">
             <div class="row">
-              <div class="col-2">
-                <p>{{ thirdDay }}</p>
-              </div>
-              <div class="col-2">
-                <p>{{ fourthDay }}</p>
-              </div>
-              <div class="col-2">
-                <p>{{ fifthDay }}</p>
-              </div>
-              <div class="col-2">
-                <p>{{ sixthDay }}</p>
-              </div>
-              <div class="col-2">
-                <p>{{ seventhDay }}</p>
-              </div>
-              <div class="col-2">
-                <p>{{ eigthDay }}</p>
-              </div>
+              <div class="col-2"></div>
+              <div class="col-2"></div>
+              <div class="col-2"></div>
+              <div class="col-2"></div>
+              <div class="col-2"></div>
+              <div class="col-2"></div>
             </div>
           </div>
         </div>
@@ -91,8 +79,6 @@
 <script>
 import { mapState } from 'pinia'
 import { useUserStore } from '@/store/user'
-
-import moment from 'moment'
 
 import WeatherPouringIcon from 'vue-material-design-icons/WeatherPouring.vue'
 export default {
@@ -115,82 +101,8 @@ export default {
   },
   data() {
     return {
-      header: 'Weather Forecast',
-      thirdDay: '',
-      fourthDay: '',
-      fifthDay: '',
-      sixthDay: '',
-      seventhDay: '',
-      eigthDay: '',
-      futureDate: {
-        thirdData: '',
-        fourthData: '',
-        fifthData: '',
-        sixthData: '',
-        seventhData: '',
-        eigthData: ''
-      }
+      header: 'Weather Forecast'
     }
-  },
-
-  async mounted() {
-    this.thirdDay = moment().add(2, 'days').format('YYYY-MM-DD')
-    this.fourthDay = moment().add(3, 'days').format('YYYY-MM-DD')
-    this.fifthDay = moment().add(4, 'days').format('YYYY-MM-DD')
-    this.sixthDay = moment().add(5, 'days').format('YYYY-MM-DD')
-    this.seventhDay = moment().add(6, 'days').format('YYYY-MM-DD')
-    this.eigthDay = moment().add(7, 'days').format('YYYY-MM-DD')
-
-    const store = useUserStore()
-    store.$patch((state) => {
-      fetch(
-        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.thirdDay}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.futureDate.thirdData = data
-        })
-
-      fetch(
-        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.fourthDay}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.futureDate.fourthData = data
-        })
-
-      fetch(
-        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.fifthDay}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.futureDate.fifthData = data
-        })
-
-      fetch(
-        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.sixthDay}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.futureDate.sixthData = data
-        })
-
-      fetch(
-        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.seventhDay}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.futureDate.seventhData = data
-        })
-
-      fetch(
-        `${state.history_url_base}${state.lat},${state.lon}&dt=${this.eigthDay}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.futureDate.eigthData = data
-        })
-    })
   }
 }
 </script>
