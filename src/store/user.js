@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useUserStore = defineStore('main', {
   state: () => {
     return {
-      search: '',
+      search: 'Taipei',
       historyApiData: '',
       apiData: '',
       tomorrowData: '',
@@ -21,20 +21,18 @@ export const useUserStore = defineStore('main', {
   getters: {},
   actions: {
     locationCoordinates() {
-      fetch(`${this.url_base}${this.Columns.lat},${this.Columns.lon}&aqi=yes`)
+      fetch(`${this.url_base}${this.lat},${this.lon}&aqi=yes`)
         .then((res) => res.json())
         .then((data) => {
           this.apiData = data
         })
-      fetch(
-        `${this.history_url_base}${this.Columns.lat},${this.Columns.lon}&dt=${this.today}`
-      )
+      fetch(`${this.history_url_base}${this.lat},${this.lon}&dt=${this.today}`)
         .then((res) => res.json())
         .then((data) => {
           this.historyApiData = data
         })
       fetch(
-        `${this.history_url_base}${this.Columns.lat},${this.Columns.lon}&dt=${this.tomorrow}`
+        `${this.history_url_base}${this.lat},${this.lon}&dt=${this.tomorrow}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -42,19 +40,17 @@ export const useUserStore = defineStore('main', {
         })
     },
     searchCoordinates() {
-      fetch(`${this.url_base},${this.Columns.search}&aqi=yes`)
+      fetch(`${this.url_base},${this.search}&aqi=yes`)
         .then((res) => res.json())
         .then((data) => {
           this.apiData = data
         })
-      fetch(`${this.history_url_base},${this.Columns.search}&dt=${this.today}`)
+      fetch(`${this.history_url_base},${this.search}&dt=${this.today}`)
         .then((res) => res.json())
         .then((data) => {
           this.historyApiData = data
         })
-      fetch(
-        `${this.history_url_base},${this.Columns.search}&dt=${this.tomorrow}`
-      )
+      fetch(`${this.history_url_base},${this.search}&dt=${this.tomorrow}`)
         .then((res) => res.json())
         .then((data) => {
           this.tomorrowData = data

@@ -1,6 +1,13 @@
 <template>
   <div class="container">
-    <div class="Future">
+    <div
+      class="Future"
+      v-if="
+        apiData != '' ||
+        tomorrowData != '' ||
+        historyApiData.forecast.forecastday != ''
+      "
+    >
       <div class="row">
         <div class="col-4" style="color: #56719a">
           <h5>{{ header }}</h5>
