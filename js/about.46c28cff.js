@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkpinia_weather"]=self["webpackChunkpinia_weather"]||[]).push([[443],{7381:function(n,a,e){e.r(a),e.d(a,{default:function(){return f}});var t=e(3396);const r={class:"about"},u=(0,t._)("h1",null,"This is an about page",-1),i=[u];function s(n,a){return(0,t.wg)(),(0,t.iD)("div",r,i)}var c=e(89);const h={},o=(0,c.Z)(h,[["render",s]]);var f=o}}]);
-//# sourceMappingURL=about.46c28cff.js.map
