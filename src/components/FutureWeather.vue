@@ -13,7 +13,9 @@
           <h5>{{ header }}</h5>
         </div>
         <div class="col-4" style="color: #56719a">
-          <h5>{{ apiData.location.country }} {{ apiData.location.name }}</h5>
+          <h5>
+            {{ tomorrowData.location.country }} {{ tomorrowData.location.name }}
+          </h5>
         </div>
         <div class="col-12 p-2">
           <div class="main">
@@ -21,28 +23,34 @@
               <div class="col-6 align-self-center">
                 <img
                   :src="
-                    apiData.current.condition.icon.replace('64x64', '128x128')
+                    tomorrowData.forecast.forecastday[0].day.condition.icon.replace(
+                      '64x64',
+                      '128x128'
+                    )
                   "
                   style="align-self: center"
                 />
                 <p class="m-0">
-                  {{ apiData.current.condition.text }}
+                  {{ tomorrowData.forecast.forecastday[0].day.condition.text }}
                 </p>
               </div>
               <div class="col-6 align-self-center">
                 <h3 class="m-0">
                   <weather-pouring-icon fillColor="#3a4e72" :size="48" />
                   {{
-                    historyApiData.forecast.forecastday[0].hour[hour]
+                    tomorrowData.forecast.forecastday[0].hour[12]
                       .chance_of_rain
                   }}%
                 </h3>
                 <h2>
-                  {{ apiData.current.temp_c }}°C/{{ apiData.current.temp_f }}°F
+                  {{ tomorrowData.forecast.forecastday[0].day.avgtemp_c }}°C/{{
+                    tomorrowData.forecast.forecastday[0].day.avgtemp_f
+                  }}°F
                 </h2>
                 <p class="m-0">
-                  Feellike : {{ apiData.current.feelslike_c }}°C/{{
-                    apiData.current.feelslike_f
+                  MaxTemp :
+                  {{ tomorrowData.forecast.forecastday[0].day.maxtemp_c }}°C/{{
+                    tomorrowData.forecast.forecastday[0].day.maxtemp_f
                   }}°F
                 </p>
               </div>
