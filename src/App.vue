@@ -16,15 +16,19 @@
     </div>
   </nav>
   <router-view />
+  <footer-component />
 </template>
 
 <script>
 import { mapState } from 'pinia'
 import { useUserStore } from '@/store/user'
-
+import FooterComponent from './components/FooterComponent.vue'
 import moment from 'moment'
 
 export default {
+  components: {
+    FooterComponent
+  },
   computed: {
     ...mapState(useUserStore, [
       'history_url_base',
@@ -98,7 +102,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  min-height: 100vh;
 }
 
 nav {
@@ -112,5 +115,9 @@ nav {
       color: #42b983;
     }
   }
+}
+
+.container {
+  min-height: 90vh;
 }
 </style>
