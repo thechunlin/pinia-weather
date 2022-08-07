@@ -26,14 +26,10 @@
             type="text"
             class="form-control"
             placeholder="city"
-            v-model="search"
+            v-model="city"
           />
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button
-              type="button"
-              class="btn btn-info"
-              v-on:click="searchCoordinates"
-            >
+            <button type="button" class="btn btn-info" v-on:click="searchData">
               <magnify-icon fillColor="#e3ebfe" />
             </button>
             <button
@@ -262,6 +258,7 @@
         </div>
       </div>
     </div>
+    <p>{{ city }}</p>
   </div>
 </template>
 
@@ -281,6 +278,15 @@ import WeatherPouringIcon from 'vue-material-design-icons/WeatherPouring.vue'
 import ThermometerIcon from 'vue-material-design-icons/Thermometer.vue'
 
 export default {
+  // setup() {
+  //   const store = useUserStore()
+  //   store.$patch((state) => {
+  //     const { city } = storeToRefs(store)
+  //     return {
+  //       city
+  //     }
+  //   })
+  // },
   computed: {
     ...mapState(useUserStore, [
       'history_url_base',
@@ -312,13 +318,20 @@ export default {
   data() {
     return {
       header: 'Weather Forecast',
-      search: ''
+      city: ''
     }
   },
   methods: {
     ...mapActions(useUserStore, ['locationCoordinates']),
 
-    ...mapActions(useUserStore, ['searchCoordinates'])
+    ...mapActions(useUserStore, ['searchCoordinates']),
+    searchData() {
+      this.searchCoordinates()
+      const store = useUserStore()
+      store.$patch((state) => {
+        state.search = this.city
+      })
+    }
   }
 }
 </script>

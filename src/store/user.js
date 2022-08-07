@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useUserStore = defineStore('main', {
   state: () => {
     return {
-      search: 'Taipei',
+      search: '',
       historyApiData: '',
       apiData: '',
       tomorrowData: '',
