@@ -2,11 +2,7 @@
   <div class="container">
     <div
       class="TodayWeather"
-      v-if="
-        apiData != '' ||
-        tomorrowData != '' ||
-        historyApiData.forecast.forecastday != ''
-      "
+      v-if="apiData != '' || historyApiData.forecast.forecastday != ''"
     >
       <div class="row">
         <div class="col-4" style="color: #56719a"></div>
@@ -268,10 +264,7 @@ export default {
       'lon',
       'hour',
       'historyApiData',
-      'today',
-      'tomorrow',
       'apiData',
-      'tomorrowData',
       'search'
     ])
   },
