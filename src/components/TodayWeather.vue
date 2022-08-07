@@ -12,9 +12,37 @@
         <div class="col-4" style="color: #56719a"></div>
         <div class="col-4" style="color: #56719a">
           <h5>{{ apiData.location.country }} {{ apiData.location.name }}</h5>
-          <h4 style="margin: 1%">
-            LocalTime: {{ apiData.location.localtime }}
-          </h4>
+        </div>
+      </div>
+      <div class="row py-3">
+        <div class="input-group mb-2 input-group-lg-3 maxlength-5">
+          <span
+            class="input-group-text"
+            id="basic-addon1"
+            style="background-color: #ffffff"
+          >
+            {{ apiData.location.localtime }}(
+            {{ apiData.location.tz_id }} )</span
+          >
+          <input
+            type="text"
+            class="form-control"
+            placeholder="city"
+            v-model="city"
+          />
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-info" v-on:click="searchData">
+              <magnify-icon fillColor="#e3ebfe" />
+            </button>
+            <button
+              type="button"
+              class="btn btn-info"
+              v-on:click="locationCoordinates"
+              style="background-color: #13a9c7"
+            >
+              <map-marker-radius-outline-icon fillColor="#e3ebfe" />
+            </button>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -223,12 +251,15 @@
 </template>
 
 <script>
-import { mapState } from 'pinia'
+import { mapState, mapActions } from 'pinia'
 import { useUserStore } from '@/store/weather'
 
 import WeatherPouringIcon from 'vue-material-design-icons/WeatherPouring.vue'
 import ThermometerIcon from 'vue-material-design-icons/Thermometer.vue'
+import MagnifyIcon from 'vue-material-design-icons/Magnify.vue'
+import MapMarkerRadiusOutlineIcon from 'vue-material-design-icons/MapMarkerRadiusOutline.vue'
 export default {
+  name: 'TodayWeather',
   computed: {
     ...mapState(useUserStore, [
       'history_url_base',
@@ -240,12 +271,32 @@ export default {
       'today',
       'tomorrow',
       'apiData',
-      'tomorrowData'
+      'tomorrowData',
+      'search'
     ])
+  },
+  data() {
+    return {
+      city: ''
+    }
   },
   components: {
     WeatherPouringIcon,
-    ThermometerIcon
+    ThermometerIcon,
+    MapMarkerRadiusOutlineIcon,
+    MagnifyIcon
+  },
+  methods: {
+    ...mapActions(useUserStore, ['locationCoordinates']),
+
+    ...mapActions(useUserStore, ['searchCoordinates']),
+    searchData() {
+      this.searchCoordinates()
+      const store = useUserStore()
+      store.$patch((state) => {
+        state.search = this.city
+      })
+    }
   }
 }
 </script>
