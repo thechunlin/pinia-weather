@@ -18,7 +18,7 @@
 
 <script>
 import { mapState } from 'pinia'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/store/weather'
 import FooterComponent from './components/FooterComponent.vue'
 import moment from 'moment'
 

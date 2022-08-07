@@ -263,7 +263,7 @@
 
 <script>
 import { mapState, mapActions } from 'pinia'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/store/weather'
 
 import SunWirelessOutlineIcon from 'vue-material-design-icons/SunWirelessOutline.vue'
 import WeatherWindyIcon from 'vue-material-design-icons/WeatherWindy.vue'

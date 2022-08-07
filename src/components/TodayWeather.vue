@@ -224,7 +224,7 @@
 
 <script>
 import { mapState } from 'pinia'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/store/weather'
 
 import WeatherPouringIcon from 'vue-material-design-icons/WeatherPouring.vue'
 import ThermometerIcon from 'vue-material-design-icons/Thermometer.vue'
