@@ -14,7 +14,7 @@
         </div>
         <div class="col-4" style="color: #56719a">
           <h5>
-            {{ tomorrowData.location.country }} {{ tomorrowData.location.name }}
+            {{ apiData.location.country }} {{ apiData.location.name }}
           </h5>
         </div>
         <div class="col-12 p-2">
