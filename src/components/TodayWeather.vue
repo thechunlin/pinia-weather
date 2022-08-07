@@ -21,7 +21,7 @@
         <div class="col-12 p-2">
           <div class="secondary">
             <div class="row">
-              <div class="col-2">
+              <div class="col-sm-4 col-lg-2">
                 <p class="m-3">AM 0:00</p>
                 <img
                   :src="
@@ -52,7 +52,7 @@
                   {{ historyApiData.forecast.forecastday[0].hour[0].temp_f }}°F
                 </p>
               </div>
-              <div class="col-2">
+              <div class="col-sm-4 col-lg-2">
                 <p class="m-3">AM 4:00</p>
                 <img
                   :src="
@@ -84,7 +84,7 @@
                   {{ historyApiData.forecast.forecastday[0].hour[4].temp_f }}°F
                 </p>
               </div>
-              <div class="col-2">
+              <div class="col-sm-4 col-lg-2">
                 <p class="m-3">AM 8:00</p>
                 <img
                   :src="
@@ -115,7 +115,7 @@
                   {{ historyApiData.forecast.forecastday[0].hour[8].temp_f }}°F
                 </p>
               </div>
-              <div class="col-2">
+              <div class="col-sm-4 col-lg-2">
                 <p class="m-3">PM 12:00</p>
                 <img
                   :src="
@@ -148,7 +148,7 @@
                   {{ historyApiData.forecast.forecastday[0].hour[12].temp_f }}°F
                 </p>
               </div>
-              <div class="col-2">
+              <div class="col-sm-4 col-lg-2">
                 <p class="m-3">PM 4:00</p>
                 <img
                   :src="
@@ -181,7 +181,7 @@
                   {{ historyApiData.forecast.forecastday[0].hour[16].temp_f }}°F
                 </p>
               </div>
-              <div class="col-2">
+              <div class="col-sm-4 col-lg-2">
                 <p class="m-3">PM 8:00</p>
                 <img
                   :src="

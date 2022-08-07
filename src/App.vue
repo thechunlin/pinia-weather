@@ -115,6 +115,6 @@ nav {
 }
 
 .container {
-  min-height: 90vh;
+  min-height: 85vh;
 }
 </style>
