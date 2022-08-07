@@ -9,9 +9,7 @@
       "
     >
       <div class="row">
-        <div class="col-4" style="color: #56719a">
-          <h5>{{ header }}</h5>
-        </div>
+        <div class="col-4" style="color: #56719a"></div>
         <div class="col-4" style="color: #56719a">
           <h5>{{ apiData.location.country }} {{ apiData.location.name }}</h5>
           <h4 style="margin: 1%">
@@ -248,11 +246,6 @@ export default {
   components: {
     WeatherPouringIcon,
     ThermometerIcon
-  },
-  data() {
-    return {
-      header: 'Weather Forecast'
-    }
   }
 }
 </script>

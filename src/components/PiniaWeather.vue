@@ -5,9 +5,7 @@
       v-if="apiData != '' || tomorrowData != '' || tomorrowData != ''"
     >
       <div class="row">
-        <div class="col-4" style="color: #56719a">
-          <h5>{{ header }}</h5>
-        </div>
+        <div class="col-4" style="color: #56719a"></div>
         <div class="col-4" style="color: #56719a">
           <h5>{{ apiData.location.country }} {{ apiData.location.name }}</h5>
         </div>
@@ -278,15 +276,6 @@ import WeatherPouringIcon from 'vue-material-design-icons/WeatherPouring.vue'
 import ThermometerIcon from 'vue-material-design-icons/Thermometer.vue'
 
 export default {
-  // setup() {
-  //   const store = useUserStore()
-  //   store.$patch((state) => {
-  //     const { city } = storeToRefs(store)
-  //     return {
-  //       city
-  //     }
-  //   })
-  // },
   computed: {
     ...mapState(useUserStore, [
       'history_url_base',
@@ -317,7 +306,6 @@ export default {
   name: 'PiniaWeather',
   data() {
     return {
-      header: 'Weather Forecast',
       city: ''
     }
   },
