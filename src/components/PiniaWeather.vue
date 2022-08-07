@@ -34,6 +34,7 @@
               type="button"
               class="btn btn-info"
               v-on:click="locationCoordinates"
+              style="background-color: #0851d1"
             >
               <map-marker-radius-outline-icon fillColor="#e3ebfe" />
             </button>
