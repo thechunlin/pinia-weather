@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-sm-12 col-lg-4"></div>
       <div class="col-sm-12 col-lg-4">
-        <router-link to="/">PiniaWeather</router-link>|
+        <router-link to="/">WeatherForecast</router-link>|
         <router-link to="/Today">TodayWeather</router-link>
       </div>
     </div>
