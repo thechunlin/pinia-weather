@@ -2,7 +2,7 @@
   <div class="container">
     <div
       class="Weather"
-      v-if="apiData != '' || tomorrowData != '' || tomorrowData != ''"
+      v-if="apiData != '' || tomorrowData != '' || historyApiData != ''"
     >
       <div class="row">
         <div class="col-4" style="color: #56719a"></div>
