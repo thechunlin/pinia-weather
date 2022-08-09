@@ -25,6 +25,7 @@
             class="form-control"
             placeholder="city"
             v-model="city"
+            v-on:keyup.enter="searchData"
           />
           <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-info" v-on:click="searchData">
