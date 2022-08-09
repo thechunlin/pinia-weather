@@ -314,11 +314,11 @@ export default {
 
     ...mapActions(useUserStore, ['searchCoordinates']),
     searchData() {
-      this.searchCoordinates()
       const store = useUserStore()
       store.$patch((state) => {
         state.search = this.city
       })
+      this.searchCoordinates()
     }
   }
 }
